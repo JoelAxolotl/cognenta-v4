@@ -4,7 +4,6 @@ import { useState } from "react";
 import SEO from "../components/SEO";
 
 const faqs = [
-// ... existing faqs ...
   {
     category: "Pricing & Results",
     questions: [
@@ -55,14 +54,18 @@ export default function FAQ() {
 
   return (
     <div className="pt-32 pb-24">
+      <SEO
+        title="Frequently Asked Questions | Cognenta"
+        description="Everything you need to know about Cognenta's pricing, implementation, and security for your SDR-to-AE handoff."
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl font-bold mb-6">Frequently Asked Questions</h1>
-          <p className="text-xl text-medium-grey">Everything you need to know about pricing, implementation, and security.</p>
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6">Frequently Asked Questions</h1>
+          <p className="text-lg sm:text-xl text-medium-grey">Everything you need to know about pricing, implementation, and security.</p>
         </motion.div>
 
         <div className="space-y-12">
@@ -79,16 +82,21 @@ export default function FAQ() {
                     <div key={qIdx} className="glass rounded-2xl overflow-hidden transition-all duration-300">
                       <button
                         onClick={() => toggle(id)}
-                        className="w-full px-8 py-6 flex justify-between items-center text-left hover:bg-white/5 transition-colors"
+                        className="w-full px-8 py-6 flex justify-between items-center text-left hover:bg-white/5 transition-colors duration-200 cursor-pointer"
+                        aria-expanded={isOpen}
+                        aria-controls={`faq-answer-${id}`}
                       >
                         <span className="text-lg font-bold">{item.q}</span>
-                        {isOpen ? <Minus className="text-cyber-mint" /> : <Plus className="text-medium-grey" />}
+                        {isOpen ? <Minus className="text-cyber-mint shrink-0 ml-4" aria-hidden="true" /> : <Plus className="text-medium-grey shrink-0 ml-4" aria-hidden="true" />}
                       </button>
                       {isOpen && (
                         <motion.div
+                          id={`faq-answer-${id}`}
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           className="px-8 pb-6 text-medium-grey leading-relaxed"
+                          role="region"
+                          aria-labelledby={`faq-question-${id}`}
                         >
                           {item.a}
                         </motion.div>
@@ -104,9 +112,12 @@ export default function FAQ() {
         <div className="mt-24 glass p-12 rounded-3xl text-center">
           <h2 className="text-2xl font-bold mb-4">Still have questions?</h2>
           <p className="text-medium-grey mb-8">We're here to help you recover your pipeline.</p>
-          <button className="bg-cyber-mint text-obsidian px-8 py-4 rounded-full font-bold text-lg mint-glow-hover transition-all">
+          <a
+            href="/revenue-audit"
+            className="bg-cyber-mint text-obsidian px-8 py-4 rounded-full font-bold text-lg mint-glow-hover transition-all duration-200 cursor-pointer inline-block"
+          >
             Book Your Free Revenue Audit
-          </button>
+          </a>
         </div>
       </div>
     </div>

@@ -16,17 +16,17 @@ export default function Philosophy() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h1 className="text-5xl font-bold mb-6 italic tracking-tighter uppercase">Thick Data vs. Thin Data</h1>
-            <p className="text-xl text-medium-grey leading-relaxed">
+            <h1 className="text-4xl sm:text-5xl font-bold mb-6 italic tracking-tighter uppercase">Thick Data vs. Thin Data</h1>
+            <p className="text-lg sm:text-xl text-medium-grey leading-relaxed">
               The B2B industry talks about personalization constantly. What actually ships is thin: a first name, a company name, a LinkedIn headline scraped from the web. That's not personalization. It's a template wearing a disguise.
             </p>
           </motion.div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24">
-          <div className="glass p-10 rounded-3xl border-white/5">
+          <div className="glass p-8 sm:p-10 rounded-3xl border-white/5">
             <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-              <ShieldAlert className="text-red-400" />
+              <ShieldAlert className="text-red-400" aria-hidden="true" />
               Thin Data
             </h3>
             <p className="text-medium-grey leading-relaxed mb-6">
@@ -37,9 +37,9 @@ export default function Philosophy() {
             </div>
           </div>
 
-          <div className="glass p-10 rounded-3xl border-cyber-mint/20">
+          <div className="glass p-8 sm:p-10 rounded-3xl border-cyber-mint/20">
             <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-              <Target className="text-cyber-mint" />
+              <Target className="text-cyber-mint" aria-hidden="true" />
               Thick Data
             </h3>
             <p className="text-medium-grey leading-relaxed mb-6">
@@ -53,19 +53,21 @@ export default function Philosophy() {
 
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">The Accuracy Constraint</h2>
-            <p className="text-xl text-medium-grey leading-relaxed">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6">The Accuracy Constraint</h2>
+            <p className="text-lg sm:text-xl text-medium-grey leading-relaxed">
               In high-ticket SaaS and agency sales, a follow-up that is confidently wrong isn't just unhelpful — it's a brand liability. Sending a technically inaccurate claim to a CISO or a senior dev loses the deal instantly.
             </p>
           </div>
 
-          <div className="relative p-12 glass rounded-3xl overflow-hidden">
-            <div className="absolute top-0 left-0 w-1 h-full bg-cyber-mint" />
-            <p className="text-lg leading-relaxed italic text-white/90">
-              "Accuracy isn't a feature we've added. It's a constraint our entire internal ops stack is built around. Nothing gets staged for your AEs that isn't grounded in your product docs and the prospect's verified reality."
-            </p>
+          <div className="relative p-8 sm:p-12 glass rounded-3xl overflow-hidden">
+            <div className="absolute top-0 left-0 w-1 h-full bg-cyber-mint" aria-hidden="true" />
+            <blockquote>
+              <p className="text-lg leading-relaxed italic text-white/90">
+                "Accuracy isn't a feature we've added. It's a constraint our entire internal ops stack is built around. Nothing gets staged for your AEs that isn't grounded in your product docs and the prospect's verified reality."
+              </p>
+            </blockquote>
             <div className="mt-8 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-cyber-mint/20 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-cyber-mint/20 flex items-center justify-center" aria-hidden="true">
                 <Zap className="text-cyber-mint" />
               </div>
               <div>

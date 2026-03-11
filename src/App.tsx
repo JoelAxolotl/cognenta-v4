@@ -16,8 +16,9 @@ export default function App() {
       <Router>
         <ScrollToTop />
         <div className="min-h-screen flex flex-col">
+          <a href="#main-content" className="skip-link">Skip to content</a>
           <Navbar />
-          <main className="flex-grow">
+          <main id="main-content" className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/revenue-audit" element={<RevenueAudit />} />

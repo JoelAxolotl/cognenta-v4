@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { GoogleGenAI } from "@google/genai";
 import { motion, AnimatePresence } from "motion/react";
-import { Sparkles, Send, Loader2, Copy, Check } from "lucide-react";
+import { Sparkles, Send, Loader2, Copy, Check, ShieldCheck } from "lucide-react";
 
 export default function BridgeDraftDemo() {
   const [input, setInput] = useState("");
@@ -47,10 +47,10 @@ export default function BridgeDraftDemo() {
   };
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-24 relative overflow-hidden" aria-label="Bridge Draft Demo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Experience the Bridge Draft Engine</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Experience the Bridge Draft Engine</h2>
           <p className="text-medium-grey max-w-2xl mx-auto">
             Paste your messiest SDR notes below and watch Cognenta build a technically grounded follow-up in seconds.
           </p>
@@ -58,39 +58,43 @@ export default function BridgeDraftDemo() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Area */}
-          <div className="glass p-8 rounded-3xl border-white/5 flex flex-col">
-            <label className="text-xs font-bold uppercase tracking-widest text-medium-grey mb-4">SDR Call Notes (The "Thick Data")</label>
+          <div className="glass p-6 sm:p-8 rounded-3xl border-white/5 flex flex-col">
+            <label htmlFor="sdr-notes-input" className="text-xs font-bold uppercase tracking-widest text-medium-grey mb-4">SDR Call Notes (The "Thick Data")</label>
             <textarea
+              id="sdr-notes-input"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="e.g. Stack: AWS, Kubernetes. Pain: Manual deployments taking 4 hours. Goal: Automate by end of month."
-              className="flex-grow bg-obsidian/50 border border-white/10 rounded-2xl p-6 text-white placeholder:text-medium-grey/30 focus:outline-none focus:border-cyber-mint/50 transition-colors resize-none min-h-[200px]"
+              className="grow bg-obsidian/50 border border-white/10 rounded-2xl p-6 text-white placeholder:text-medium-grey/30 focus:outline-none focus:border-cyber-mint/50 transition-colors duration-200 resize-none min-h-[200px]"
+              aria-label="Enter your SDR call notes"
             />
             <button
               onClick={handleGenerate}
               disabled={isLoading || !input.trim()}
-              className="mt-6 bg-cyber-mint text-obsidian font-bold py-4 rounded-full flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed mint-glow-hover transition-all"
+              className="mt-6 bg-cyber-mint text-obsidian font-bold py-4 rounded-full flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed mint-glow-hover transition-all duration-200 cursor-pointer"
+              aria-busy={isLoading}
             >
-              {isLoading ? <Loader2 className="animate-spin" /> : <Sparkles size={20} />}
+              {isLoading ? <Loader2 className="animate-spin" aria-hidden="true" /> : <Sparkles size={20} aria-hidden="true" />}
               {isLoading ? "Enriching Data..." : "Generate Bridge Draft"}
             </button>
           </div>
 
           {/* Output Area */}
-          <div className="glass p-8 rounded-3xl border-cyber-mint/20 relative flex flex-col">
+          <div className="glass p-6 sm:p-8 rounded-3xl border-cyber-mint/20 relative flex flex-col">
             <div className="flex justify-between items-center mb-4">
               <label className="text-xs font-bold uppercase tracking-widest text-cyber-mint">Cognenta Output (AE Draft)</label>
               {output && (
                 <button
                   onClick={copyToClipboard}
-                  className="text-medium-grey hover:text-white transition-colors"
+                  className="text-medium-grey hover:text-white transition-colors duration-200 cursor-pointer p-2 rounded-lg"
+                  aria-label={copied ? "Copied to clipboard" : "Copy draft to clipboard"}
                 >
-                  {copied ? <Check size={18} className="text-cyber-mint" /> : <Copy size={18} />}
+                  {copied ? <Check size={18} className="text-cyber-mint" aria-hidden="true" /> : <Copy size={18} aria-hidden="true" />}
                 </button>
               )}
             </div>
             
-            <div className="flex-grow bg-sapphire/5 border border-sapphire/20 rounded-2xl p-6 min-h-[200px] relative overflow-hidden">
+            <div className="grow bg-sapphire/5 border border-sapphire/20 rounded-2xl p-6 min-h-[200px] relative overflow-hidden" aria-live="polite">
               <AnimatePresence mode="wait">
                 {isLoading ? (
                   <motion.div
@@ -100,8 +104,8 @@ export default function BridgeDraftDemo() {
                     className="absolute inset-0 flex items-center justify-center"
                   >
                     <div className="flex flex-col items-center gap-4">
-                      <div className="w-12 h-12 border-4 border-cyber-mint/20 border-t-cyber-mint rounded-full animate-spin" />
-                      <p className="text-sm text-cyber-mint animate-pulse font-mono">Extracting situational context...</p>
+                      <div className="w-12 h-12 border-4 border-cyber-mint/20 border-t-cyber-mint rounded-full animate-spin" aria-hidden="true" />
+                      <p className="text-sm text-cyber-mint animate-pulse font-mono" role="status">Extracting situational context...</p>
                     </div>
                   </motion.div>
                 ) : output ? (
@@ -121,32 +125,12 @@ export default function BridgeDraftDemo() {
             </div>
             
             <div className="mt-6 flex items-center gap-3 text-xs text-medium-grey/50">
-              <ShieldCheck size={14} className="text-cyber-mint" />
+              <ShieldCheck size={14} className="text-cyber-mint" aria-hidden="true" />
               <span>Grounded in prospect context. Zero templates used.</span>
             </div>
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function ShieldCheck({ size, className }: { size: number; className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-      <path d="m9 12 2 2 4-4" />
-    </svg>
   );
 }

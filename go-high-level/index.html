@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Cognenta stages technically grounded bridge emails for your AE within 15 minutes of the SDR handoff. Pay only when the meeting shows. $200/meeting.">
+<title>Stop Losing Deals in the SDR-to-AE Handoff | Cognenta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #0A0D11;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  position: relative;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: -1;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --obsidian: #0A0D11;
+  --sapphire: #0F4C75;
+  --cyber-mint: #00E6A5;
+  --medium-grey: #D0D4DB;
+  --off-white: #F5F5F7;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ===== UTILITIES ===== */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 640px) { .container { padding: 0 24px; } }
+@media (min-width: 1024px) { .container { padding: 0 32px; } }
+.glass {
+  background: rgba(10, 13, 17, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.mint-glow-hover { transition: all 0.2s ease; }
+.mint-glow-hover:hover { box-shadow: 0 0 30px rgba(0, 230, 165, 0.4); }
+.mint-glow { box-shadow: 0 0 20px rgba(0, 230, 165, 0.2); }
+.text-mint { color: var(--cyber-mint); }
+.text-grey { color: var(--medium-grey); }
+.text-grey-50 { color: rgba(208, 212, 219, 0.5); }
+.bg-section { background: rgba(255,255,255,0.05); }
+.rounded-pill { border-radius: 9999px; }
+.rounded-2xl { border-radius: 1rem; }
+.rounded-3xl { border-radius: 1.5rem; }
+.font-mono { font-family: var(--font-mono); }
+.font-bold { font-weight: 700; }
+.uppercase { text-transform: uppercase; }
+.tracking-wider { letter-spacing: 0.05em; }
+.tracking-widest { letter-spacing: 0.1em; }
+.italic { font-style: italic; }
+.cursor-pointer { cursor: pointer; }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes progressBar { from { width: 0; } to { width: 100%; } }
+@keyframes pulse { 0%, 100% { opacity: 0.1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(1.1); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.navbar-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+.nav-logo { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.05em; text-transform: uppercase; font-style: italic; }
+.nav-links { display: flex; align-items: center; gap: 2rem; }
+.nav-link { font-size: 0.875rem; font-weight: 500; color: var(--medium-grey); transition: color 0.2s; }
+.nav-link:hover, .nav-link.active { color: var(--cyber-mint); }
+.nav-cta {
+  background: var(--cyber-mint); color: var(--obsidian);
+  padding: 10px 20px; border-radius: 9999px;
+  font-size: 0.875rem; font-weight: 700;
+  transition: all 0.2s; cursor: pointer; display: inline-block;
+}
+.nav-cta:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 230, 165, 0.4); }
+.mobile-menu-btn { display: none; background: none; border: none; color: var(--medium-grey); cursor: pointer; padding: 8px; }
+@media (max-width: 767px) {
+  .nav-links { display: none; }
+  .mobile-menu-btn { display: block; }
+}
+
+/* ===== HERO ===== */
+.hero { padding: 160px 0 96px; position: relative; overflow: hidden; }
+.hero-glow-1 { position: absolute; top: -10%; left: -10%; width: 40%; height: 40%; background: rgba(15,76,117,0.2); filter: blur(120px); border-radius: 50%; pointer-events: none; }
+.hero-glow-2 { position: absolute; bottom: -10%; right: -10%; width: 40%; height: 40%; background: rgba(0,230,165,0.1); filter: blur(120px); border-radius: 50%; pointer-events: none; }
+.hero-content { max-width: 896px; position: relative; animation: fadeInUp 0.8s ease-out; }
+.hero h1 { font-size: 2.25rem; font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 2rem; }
+@media (min-width: 640px) { .hero h1 { font-size: 3rem; } }
+@media (min-width: 768px) { .hero h1 { font-size: 4.5rem; } }
+.hero p.subtitle { font-size: 1.125rem; color: var(--medium-grey); margin-bottom: 2.5rem; max-width: 672px; line-height: 1.75; }
+@media (min-width: 640px) { .hero p.subtitle { font-size: 1.25rem; } }
+.hero-ctas { display: flex; flex-direction: column; gap: 1rem; }
+@media (min-width: 640px) { .hero-ctas { flex-direction: row; } }
+.btn-primary {
+  background: var(--cyber-mint); color: var(--obsidian);
+  padding: 16px 32px; border-radius: 9999px;
+  font-weight: 700; font-size: 1.125rem;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  transition: all 0.2s; cursor: pointer; border: none; text-align: center;
+}
+.btn-primary:hover { box-shadow: 0 0 30px rgba(0, 230, 165, 0.4); }
+.btn-secondary {
+  border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);
+  padding: 16px 32px; border-radius: 9999px;
+  font-weight: 700; font-size: 1.125rem;
+  transition: all 0.2s; cursor: pointer; color: #fff; text-align: center;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.1); }
+.hero-note { margin-top: 1.5rem; font-size: 0.875rem; color: rgba(208,212,219,0.6); font-style: italic; }
+
+/* ===== DEAD ZONE ===== */
+.deadzone { padding: 96px 0; position: relative; overflow: hidden; }
+.deadzone-title { text-align: center; margin-bottom: 4rem; }
+.deadzone-title h2 { font-size: 1.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--cyber-mint); margin-bottom: 1rem; }
+.deadzone-title p { color: var(--medium-grey); }
+.progress-bar { position: relative; height: 8px; background: rgba(255,255,255,0.05); border-radius: 9999px; margin-bottom: 3rem; overflow: hidden; }
+.progress-fill { position: absolute; height: 100%; background: linear-gradient(to right, var(--cyber-mint), var(--sapphire)); animation: progressBar 2s linear forwards; }
+.deadzone-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+@media (min-width: 768px) { .deadzone-grid { grid-template-columns: repeat(3, 1fr); } }
+.deadzone-step p.step-label { font-size: 0.75rem; font-weight: 700; color: var(--medium-grey); margin-bottom: 0.5rem; }
+.deadzone-step p.step-title { font-weight: 700; }
+.deadzone-step p.step-sub { font-size: 0.75rem; color: var(--medium-grey); margin-top: 0.25rem; }
+.dead-badge { display: inline-block; padding: 4px 12px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); color: #ef4444; font-size: 10px; font-weight: 700; border-radius: 4px; margin-bottom: 0.5rem; }
+
+/* ===== BRIDGE DEMO ===== */
+.bridge-demo { padding: 96px 0; position: relative; overflow: hidden; }
+.bridge-demo .section-title { text-align: center; margin-bottom: 4rem; }
+.bridge-demo .section-title h2 { font-size: 1.875rem; font-weight: 700; margin-bottom: 1rem; }
+@media (min-width: 640px) { .bridge-demo .section-title h2 { font-size: 2.25rem; } }
+.bridge-demo .section-title p { color: var(--medium-grey); max-width: 672px; margin: 0 auto; }
+.demo-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+@media (min-width: 1024px) { .demo-grid { grid-template-columns: 1fr 1fr; } }
+.demo-card { padding: 24px; border-radius: 1.5rem; display: flex; flex-direction: column; }
+@media (min-width: 640px) { .demo-card { padding: 32px; } }
+.demo-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+.demo-textarea {
+  flex-grow: 1; min-height: 200px; resize: none;
+  background: rgba(10,13,17,0.5); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 1rem; padding: 1.5rem; color: #fff;
+  font-family: inherit; font-size: 0.875rem; line-height: 1.6;
+}
+.demo-textarea::placeholder { color: rgba(208,212,219,0.3); }
+.demo-textarea:focus { outline: none; border-color: rgba(0,230,165,0.5); }
+.demo-btn { margin-top: 1.5rem; width: 100%; }
+.demo-output {
+  flex-grow: 1; min-height: 200px;
+  background: rgba(15,76,117,0.05); border: 1px solid rgba(15,76,117,0.2);
+  border-radius: 1rem; padding: 1.5rem;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(208,212,219,0.2); font-style: italic;
+}
+.demo-footer { margin-top: 1.5rem; display: flex; align-items: center; gap: 0.75rem; font-size: 0.75rem; color: rgba(208,212,219,0.5); }
+
+/* ===== COMPARISON ===== */
+.comparison { padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+.comparison .section-header { margin-bottom: 4rem; }
+.comparison .section-header h2 { font-size: 1.875rem; font-weight: 700; margin-bottom: 1rem; }
+.comparison .section-header p { color: var(--medium-grey); }
+.comparison-row { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+@media (min-width: 1024px) { .comparison-row { grid-template-columns: repeat(3, 1fr); } }
+.comparison-card { padding: 1.5rem; border-radius: 1rem; }
+.comparison-card h3 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
+.comparison-card .code-block {
+  font-family: var(--font-mono); font-size: 0.75rem; color: var(--medium-grey);
+  background: var(--obsidian); padding: 1rem; border-radius: 0.5rem;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.comparison-card .quote { font-size: 0.875rem; color: var(--medium-grey); font-style: italic; }
+.comparison-card .bridge-quote {
+  background: rgba(15,76,117,0.1); border: 1px solid rgba(15,76,117,0.2);
+  padding: 1rem; border-radius: 0.5rem; font-size: 0.875rem;
+}
+.comparison-card.mint-border { border-color: rgba(0,230,165,0.2); }
+.comparison-card h3.mint { color: var(--cyber-mint); }
+
+/* ===== THICK DATA ===== */
+.thick-data { padding: 96px 0; }
+.thick-data-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; align-items: center; }
+@media (min-width: 1024px) { .thick-data-grid { grid-template-columns: 1fr 1fr; } }
+.thick-data h2 { font-size: 2.25rem; font-weight: 700; margin-bottom: 2rem; }
+.thick-data .lead { font-size: 1.125rem; color: var(--medium-grey); margin-bottom: 1.5rem; line-height: 1.75; }
+.thick-data ul { margin-bottom: 2rem; }
+.thick-data li { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; }
+.thick-data li .check { color: var(--cyber-mint); flex-shrink: 0; margin-top: 4px; }
+.thick-data li span { font-style: italic; }
+.engine-card {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  padding: 2rem; border-radius: 1rem; position: relative; overflow: hidden;
+}
+.engine-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; }
+.engine-card p { color: var(--medium-grey); margin-bottom: 2rem; }
+.engine-card a { color: var(--cyber-mint); font-weight: 700; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+.engine-card a:hover { text-decoration: underline; }
+
+/* ===== PROTOCOL ===== */
+.protocol { padding: 96px 0; }
+.protocol .section-title { text-align: center; margin-bottom: 4rem; }
+.protocol .section-title h2 { font-size: 2.25rem; font-weight: 700; margin-bottom: 1rem; }
+.protocol .section-title p { color: var(--medium-grey); max-width: 672px; margin: 0 auto; }
+.protocol-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+@media (min-width: 768px) { .protocol-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .protocol-grid { grid-template-columns: repeat(4, 1fr); } }
+.protocol-card { padding: 2rem; border-radius: 1rem; transition: border-color 0.2s; }
+.protocol-card:hover { border-color: rgba(0,230,165,0.3); }
+.protocol-card .icon { color: var(--cyber-mint); margin-bottom: 1rem; }
+.protocol-card h4 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.75rem; }
+.protocol-card p { font-size: 0.875rem; color: var(--medium-grey); line-height: 1.75; }
+
+/* ===== BENCHMARKS ===== */
+.benchmarks { padding: 96px 0; }
+.benchmarks .section-title { text-align: center; margin-bottom: 4rem; }
+.benchmarks .section-title h2 { font-size: 1.875rem; font-weight: 700; margin-bottom: 1rem; }
+.benchmarks .section-title p { color: var(--medium-grey); max-width: 672px; margin: 0 auto; }
+.benchmarks-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+@media (min-width: 768px) { .benchmarks-grid { grid-template-columns: repeat(3, 1fr); } }
+.benchmark-card { padding: 2rem; border-radius: 1rem; text-align: center; }
+.benchmark-card h3 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--medium-grey); margin-bottom: 1.5rem; }
+.benchmark-values { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; }
+.benchmark-col p.label { font-size: 0.75rem; color: var(--medium-grey); margin-bottom: 0.5rem; }
+.benchmark-col p.label.mint { color: var(--cyber-mint); }
+.benchmark-col p.value { font-size: 1.5rem; font-family: var(--font-mono); font-weight: 700; color: rgba(255,255,255,0.5); }
+.benchmark-col p.value.mint { color: var(--cyber-mint); }
+.benchmark-divider { width: 1px; background: rgba(255,255,255,0.1); }
+.benchmark-card p.desc { font-size: 0.75rem; color: var(--medium-grey); line-height: 1.5; }
+
+/* ===== PRICING ===== */
+.pricing { padding: 96px 0; }
+.pricing-inner { max-width: 768px; margin: 0 auto; text-align: center; }
+.pricing h2 { font-size: 2.25rem; font-weight: 700; margin-bottom: 2rem; }
+.pricing .lead { font-size: 1.25rem; color: var(--medium-grey); margin-bottom: 3rem; }
+.pricing-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem; }
+@media (min-width: 768px) { .pricing-grid { grid-template-columns: 1fr 1fr; } }
+.pricing-card { padding: 2rem; border-radius: 1rem; text-align: left; }
+.pricing-card.mint-border { border-color: rgba(0,230,165,0.3); }
+.pricing-card h4 { color: var(--cyber-mint); font-weight: 700; font-size: 1.5rem; margin-bottom: 0.5rem; }
+.pricing-card p { font-size: 0.875rem; color: var(--medium-grey); }
+.pricing .btn-primary { font-size: 1.25rem; padding: 20px 40px; }
+
+/* ===== FOOTER ===== */
+.site-footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 64px 0; }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+@media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+.footer-brand { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.05em; text-transform: uppercase; font-style: italic; }
+.footer-desc { margin-top: 1rem; color: var(--medium-grey); max-width: 384px; font-size: 0.875rem; }
+.footer-col h4 { font-weight: 700; margin-bottom: 1rem; }
+.footer-col ul li { margin-bottom: 0.5rem; }
+.footer-col a { font-size: 0.875rem; color: var(--medium-grey); transition: color 0.2s; }
+.footer-col a:hover { color: var(--cyber-mint); }
+.footer-bottom {
+  margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex; flex-direction: column; align-items: center; gap: 1rem;
+}
+@media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
+.footer-bottom p { font-size: 0.75rem; color: rgba(208,212,219,0.5); }
+.footer-social { display: flex; gap: 1.5rem; }
+.footer-social a { font-size: 0.75rem; color: rgba(208,212,219,0.5); transition: color 0.2s; }
+.footer-social a:hover { color: #fff; }
+
+/* ===== SVG ICONS (inline) ===== */
+.icon-arrow { display: inline-block; width: 20px; height: 20px; vertical-align: middle; }
+.icon-check { display: inline-block; width: 20px; height: 20px; vertical-align: middle; color: var(--cyber-mint); }
+.icon-shield { display: inline-block; width: 14px; height: 14px; vertical-align: middle; color: var(--cyber-mint); }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar glass">
+  <div class="container navbar-inner">
+    <a href="#" class="nav-logo">Cognenta</a>
+    <div class="nav-links">
+      <a href="#hero" class="nav-link active">Home</a>
+      <a href="#benchmarks" class="nav-link">Benchmarks</a>
+      <a href="#protocol" class="nav-link">How It Works</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#pricing" class="nav-cta mint-glow-hover">Book Audit</a>
+    </div>
+    <button class="mobile-menu-btn" aria-label="Open menu" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="container">
+    <div class="hero-content">
+      <h1>
+        Your SDR Books the Meeting.<br>
+        <span class="text-mint">Your AE Sends a Generic Follow-Up.</span><br>
+        The Prospect Ghosts.
+      </h1>
+      <p class="subtitle">
+        You already know the 24-hour window after the qualification call is where your pipeline dies. 
+        Cognenta closes it — staging a technically grounded bridge email built from the prospect's actual call context.
+      </p>
+      <div class="hero-ctas">
+        <a href="#pricing" class="btn-primary mint-glow-hover">
+          Calculate My Pipeline Leak — 15 Minutes
+          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#bridge-demo" class="btn-secondary">See the Drafts We Build</a>
+      </div>
+      <p class="hero-note">No new software. No CRM double-entry. You only pay when the meeting shows.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEAD ZONE ===== -->
+<section class="deadzone" id="deadzone">
+  <div class="container">
+    <div class="deadzone-title">
+      <h2>The Dead Zone</h2>
+      <p>Where 30% of your pipeline disappears.</p>
+    </div>
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <div class="deadzone-grid">
+      <div class="deadzone-step">
+        <p class="step-label">MINUTE 0</p>
+        <p class="step-title">SDR Call Ends</p>
+        <p class="step-sub">High Intent Peak</p>
+      </div>
+      <div class="deadzone-step">
+        <div class="dead-badge">THE DEAD ZONE</div>
+        <p class="step-title">Silence</p>
+        <p class="step-sub">Context Fades</p>
+      </div>
+      <div class="deadzone-step">
+        <p class="step-label">HOUR 24</p>
+        <p class="step-title">Generic Invite Sent</p>
+        <p class="step-sub">Prospect Ghosts</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BRIDGE DEMO ===== -->
+<section class="bridge-demo" id="bridge-demo">
+  <div class="container">
+    <div class="section-title">
+      <h2>Experience the Bridge Draft Engine</h2>
+      <p>Paste your messiest SDR notes below and watch Cognenta build a technically grounded follow-up in seconds.</p>
+    </div>
+    <div class="demo-grid">
+      <div class="demo-card glass" style="border-color: rgba(255,255,255,0.05);">
+        <label class="demo-label text-grey">SDR Call Notes (The "Thick Data")</label>
+        <textarea class="demo-textarea" placeholder="e.g. Stack: AWS, Kubernetes. Pain: Manual deployments taking 4 hours. Goal: Automate by end of month."></textarea>
+        <button class="btn-primary demo-btn mint-glow-hover">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5H18l-3.5 2.5L16 14.5 12 12l-4 2.5L9.5 10 6 7.5h4.5z"/></svg>
+          Generate Bridge Draft
+        </button>
+      </div>
+      <div class="demo-card glass" style="border-color: rgba(0,230,165,0.2);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+          <span class="demo-label text-mint" style="margin-bottom:0;">Cognenta Output (AE Draft)</span>
+        </div>
+        <div class="demo-output">Draft will appear here...</div>
+        <div class="demo-footer">
+          <svg class="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>Grounded in prospect context. Zero templates used.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPARISON ===== -->
+<section class="comparison bg-section" id="comparison">
+  <div class="container">
+    <div class="section-header">
+      <h2>See the Difference — Real Examples</h2>
+      <p class="text-grey">This is what your AE finds waiting for them:</p>
+    </div>
+
+    <!-- Example 1 -->
+    <div class="comparison-row">
+      <div class="comparison-card glass">
+        <h3 class="text-grey">SDR Call Notes</h3>
+        <div class="code-block">Stack: Auth0<br>Bottleneck: Manual KYC too slow<br>Timeline: Q3</div>
+      </div>
+      <div class="comparison-card glass">
+        <h3 class="text-grey">Standard AE Follow-Up</h3>
+        <p class="quote">"Great chatting! Looking forward to showing you our tool on Thursday."</p>
+      </div>
+      <div class="comparison-card glass mint-border">
+        <h3 class="mint">The Cognenta Bridge Draft</h3>
+        <div class="bridge-quote">"Since [SDR] mentioned your manual KYC process is bottlenecking your Q3 goals, I pulled your Auth0 setup. Here's how teams at your stage have reduced onboarding latency — we'll cover exactly how this maps to your stack on Thursday."</div>
+      </div>
+    </div>
+
+    <!-- Example 2 -->
+    <div class="comparison-row">
+      <div class="comparison-card glass">
+        <h3 class="text-grey">SDR Call Notes</h3>
+        <div class="code-block">Stack: Snowflake<br>Bottleneck: API lag at scale<br>Timeline: ASAP</div>
+      </div>
+      <div class="comparison-card glass">
+        <h3 class="text-grey">Standard AE Follow-Up</h3>
+        <p class="quote">"Here's a link to our API docs before our call."</p>
+      </div>
+      <div class="comparison-card glass mint-border">
+        <h3 class="mint">The Cognenta Bridge Draft</h3>
+        <div class="bridge-quote">"Your data infrastructure runs on Snowflake. Our architecture addresses the API lag that emerges at your scale — I've put together a quick technical overview of how our architecture maps to your Snowflake setup so we can go straight to the details on our call."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THICK DATA ===== -->
+<section class="thick-data" id="thick-data">
+  <div class="container">
+    <div class="thick-data-grid">
+      <div>
+        <h2>What Is Thick Data?</h2>
+        <p class="lead">When a prospect spends 15 minutes on the phone with your SDR, they hand you exactly what's hurting:</p>
+        <ul>
+          <li>
+            <svg class="check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+            <span>"We're scaling on AWS, but API latency is killing us."</span>
+          </li>
+          <li>
+            <svg class="check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+            <span>"We need to clear SOC2 by Q3."</span>
+          </li>
+          <li>
+            <svg class="check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+            <span>"If we don't fix manual KYC onboarding, we lose our enterprise deals."</span>
+          </li>
+        </ul>
+        <p class="text-grey">That is Thick Data — high-density, technical context your prospect volunteered because they are in pain. Most sales teams acknowledge it by burying it in a messy CRM note, then sending a generic calendar invite.</p>
+      </div>
+      <div class="engine-card">
+        <h3>The Cognenta Engine</h3>
+        <p>Cognenta extracts it, enriches it, and turns it into a follow-up that proves your AE was actually in the room.</p>
+        <a href="#pricing">
+          See If We're a Fit — Book a Free Revenue Audit
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROTOCOL ===== -->
+<section class="protocol bg-section" id="protocol">
+  <div class="container">
+    <div class="section-title">
+      <h2>How Our Managed Protocol Works</h2>
+      <p>We sit directly in the Dead Zone — handling the research, CRM hygiene, and drafting so your Founders and AEs can focus on closing deals.</p>
+    </div>
+    <div class="protocol-grid">
+      <div class="protocol-card glass">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h4>1. The Single Source of Truth</h4>
+        <p>Your SDR finishes the call and submits a 3-bullet intake form. We instantly push this to HubSpot or Salesforce. Zero double-data entry.</p>
+      </div>
+      <div class="protocol-card glass">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h4>2. Deep Account Enrichment</h4>
+        <p>If the SDR's notes are thin, our internal ops stack fills the gaps — recent funding, verified tech stack data, and industry news via Clay.com.</p>
+      </div>
+      <div class="protocol-card glass">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h4>3. The 15-Minute Bridge Draft</h4>
+        <p>We transform the raw data into a technical bridge email grounded in exactly two sources: your verified product documentation and the prospect's actual context.</p>
+      </div>
+      <div class="protocol-card glass">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+        </div>
+        <h4>4. Human Control, Always</h4>
+        <p>The draft lands in your AE's Slack or Drafts folder, marked Pending Review. One click to review. One click to send. You control 100% of what goes out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BENCHMARKS ===== -->
+<section class="benchmarks" id="benchmarks">
+  <div class="container">
+    <div class="section-title">
+      <h2>Industry Benchmarks</h2>
+      <p>See how Cognenta compares to the industry standard for SDR-to-AE handoff performance.</p>
+    </div>
+    <div class="benchmarks-grid">
+      <div class="benchmark-card glass">
+        <h3>Demo Show Rate</h3>
+        <div class="benchmark-values">
+          <div class="benchmark-col">
+            <p class="label">Industry Avg</p>
+            <p class="value">62%</p>
+          </div>
+          <div class="benchmark-divider"></div>
+          <div class="benchmark-col">
+            <p class="label mint">With Cognenta</p>
+            <p class="value mint">84%</p>
+          </div>
+        </div>
+        <p class="desc">Prospects who actually attend the demo after SDR qualification</p>
+      </div>
+      <div class="benchmark-card glass">
+        <h3>Follow-Up Speed</h3>
+        <div class="benchmark-values">
+          <div class="benchmark-col">
+            <p class="label">Industry Avg</p>
+            <p class="value">24+ hours</p>
+          </div>
+          <div class="benchmark-divider"></div>
+          <div class="benchmark-col">
+            <p class="label mint">With Cognenta</p>
+            <p class="value mint">&lt; 15 min</p>
+          </div>
+        </div>
+        <p class="desc">Time from SDR call end to AE's first contextual touchpoint</p>
+      </div>
+      <div class="benchmark-card glass">
+        <h3>Pipeline Recovery</h3>
+        <div class="benchmark-values">
+          <div class="benchmark-col">
+            <p class="label">Industry Avg</p>
+            <p class="value">—</p>
+          </div>
+          <div class="benchmark-divider"></div>
+          <div class="benchmark-col">
+            <p class="label mint">With Cognenta</p>
+            <p class="value mint">+30%</p>
+          </div>
+        </div>
+        <p class="desc">Average increase in pipeline value from reduced ghosting</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="pricing-inner">
+      <h2>Pricing: You Only Pay When the Meeting Shows</h2>
+      <p class="lead">Cognenta is not a SaaS subscription. There is no monthly retainer to justify.</p>
+      <div class="pricing-grid">
+        <div class="pricing-card glass">
+          <h4>Setup: $350</h4>
+          <p>We build your custom Handoff Workflow, Intake Form, and CRM sync. Done in 48 hours for standard CRM instances.</p>
+        </div>
+        <div class="pricing-card glass mint-border">
+          <h4>Performance: $200</h4>
+          <p>Per meeting that shows. That's it. We only win when your pipeline converts.</p>
+        </div>
+      </div>
+      <a href="#" class="btn-primary mint-glow-hover" style="font-size:1.25rem; padding:20px 40px;">
+        Book My Free Revenue Audit
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Cognenta</div>
+        <p class="footer-desc">Built for B2B SaaS and high-ticket agency founders running a setter-to-AE motion. Eliminate the ops slog. Recover pipeline. Get your Sundays back.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#protocol">How It Works</a></li>
+          <li><a href="#benchmarks">Benchmarks</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#thick-data">Philosophy</a></li>
+          <li><a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Cognenta. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
