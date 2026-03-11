@@ -42,7 +42,7 @@ export default function Navbar() {
             ))}
             <Link
               to="/revenue-audit"
-              className="bg-cyber-mint text-obsidian px-5 py-2.5 rounded-full text-sm font-bold mint-glow-hover transition-all duration-200 transform hover:scale-105 cursor-pointer"
+              className="bg-cyber-mint text-obsidian px-5 py-2.5 rounded-full text-sm font-bold mint-glow-hover transition-all duration-200 cursor-pointer"
             >
               Book Audit
             </Link>

@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Plus, Minus } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 
 const faqs = [
@@ -112,12 +113,12 @@ export default function FAQ() {
         <div className="mt-24 glass p-12 rounded-3xl text-center">
           <h2 className="text-2xl font-bold mb-4">Still have questions?</h2>
           <p className="text-medium-grey mb-8">We're here to help you recover your pipeline.</p>
-          <a
-            href="/revenue-audit"
+          <Link
+            to="/revenue-audit"
             className="bg-cyber-mint text-obsidian px-8 py-4 rounded-full font-bold text-lg mint-glow-hover transition-all duration-200 cursor-pointer inline-block"
           >
             Book Your Free Revenue Audit
-          </a>
+          </Link>
         </div>
       </div>
     </div>
