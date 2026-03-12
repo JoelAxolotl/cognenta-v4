@@ -19,9 +19,20 @@ export default function ScalingTeams() {
           >
             <h1 className="text-4xl sm:text-5xl font-bold mb-6">Built for Founder-Led Sales — SaaS and High-Ticket Agencies</h1>
             <p className="text-lg sm:text-xl text-medium-grey leading-relaxed">
-              You hired Setters to scale your calendar. You're still personally closing deals. Every time a meeting is booked, your senior team burns valuable selling time researching the account and writing follow-ups.
+              You hired Setters to scale your calendar. You're still personally closing deals. Every time a meeting is booked, your senior team burns valuable selling time researching the account, cleaning up the CRM, and writing a follow-up that proves they understand the technical architecture.
             </p>
           </motion.div>
+        </div>
+
+        {/* Pull Quote — immediately after hero */}
+        <div className="mb-16 relative rounded-3xl overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-sapphire/40 to-transparent z-10" aria-hidden="true" />
+          <div className="w-full h-[250px] bg-gradient-to-br from-sapphire/30 via-obsidian to-cyber-mint/10" aria-hidden="true" />
+          <div className="absolute inset-0 z-20 flex items-center px-8 sm:px-12">
+            <div className="max-w-xl">
+              <h2 className="text-2xl sm:text-3xl font-bold italic leading-snug">"That's not a hiring problem. That's an ops gap. Cognenta closes it."</h2>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -34,7 +45,7 @@ export default function ScalingTeams() {
               },
               {
                 title: "Signal That You Were Listening",
-                desc: "A prospect who tells your SDR they're running on Kubernetes expects a peer-to-peer conversation. A generic calendar invite tells them the notes went nowhere. Cognenta ensures your AE's first touchpoint reflects exactly what was discussed.",
+                desc: "A prospect who tells your SDR they're running on Kubernetes and struggling with SOC2 compliance expects a peer-to-peer conversation. A generic calendar invite tells them the notes went nowhere. Cognenta ensures your AE's first touchpoint reflects exactly what was discussed.",
                 icon: <MessageSquare className="text-cyber-mint" size={28} aria-hidden="true" />
               }
             ].map((item, i) => (
@@ -59,7 +70,7 @@ export default function ScalingTeams() {
               },
               {
                 title: "For High-Ticket Agencies",
-                desc: "A prospect who mentioned their CPL is unsustainable doesn't want a deck. They want proof you understand their situation. That's what Cognenta builds.",
+                desc: "A prospect who mentioned their CPL is unsustainable and their current dev shop is missing deadlines doesn't want a deck. They want proof you understand their situation. That's what Cognenta builds.",
                 icon: <Users className="text-cyber-mint" size={28} aria-hidden="true" />
               }
             ].map((item, i) => (
@@ -76,21 +87,15 @@ export default function ScalingTeams() {
           </div>
         </div>
 
-        <div className="mt-24 relative rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-sapphire/40 to-transparent z-10" aria-hidden="true" />
-          <div className="w-full h-[400px] bg-gradient-to-br from-sapphire/30 via-obsidian to-cyber-mint/10" aria-hidden="true" />
-          <div className="absolute inset-0 z-20 flex items-center px-8 sm:px-12">
-            <div className="max-w-xl">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-6 italic">"That's not a hiring problem. That's an ops gap. Cognenta closes it."</h2>
-              <Link
-                to="/revenue-audit"
-                className="bg-cyber-mint text-obsidian px-8 py-4 rounded-full font-bold text-lg mint-glow-hover transition-all duration-200 cursor-pointer inline-flex items-center gap-2"
-              >
-                Book Your Free Revenue Audit
-                <ArrowRight size={20} />
-              </Link>
-            </div>
-          </div>
+        {/* CTA Section */}
+        <div className="mt-24 text-center">
+          <Link
+            to="/revenue-audit"
+            className="bg-cyber-mint text-obsidian px-8 py-4 rounded-full font-bold text-lg mint-glow-hover transition-all duration-200 cursor-pointer inline-flex items-center gap-2"
+          >
+            Book Your Free Revenue Audit
+            <ArrowRight size={20} />
+          </Link>
         </div>
       </div>
     </div>

@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { Plus, Minus } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 
 const faqs = [
@@ -10,7 +9,7 @@ const faqs = [
     questions: [
       {
         q: "What does it cost?",
-        a: "Setup fee: $350 (covers building your custom Handoff Workflow, Intake Form, and CRM sync). Performance fee: $200 per meeting that shows. No monthly retainer. No flat subscription. We only charge when a prospect actually shows up to the demo."
+        a: "Setup fee: $350 (covers building your custom Handoff Workflow, Intake Form, and CRM sync). Performance fee: $200 per meeting that shows. No monthly retainer. No flat subscription. We only charge when a prospect actually shows up to the demo.\n\nWe also include a Triage Checkbox on the SDR intake form. If the SDR just booked a straightforward deal — standard stack, clear timeline, no unusual complexity — they leave it blank. That handoff still gets CRM hygiene and a clean calendar invite, but you pay nothing.\n\nIf the SDR books a complex deal — unfamiliar tech stack, multi-stakeholder buying committee, or the prospect raised specific objections — they check the box. You only pay the $200 performance fee for meetings where the box was checked and the prospect actually showed up."
       },
       {
         q: "How quickly will we see results?",
@@ -28,6 +27,10 @@ const faqs = [
       {
         q: "Will this hurt our domain reputation?",
         a: "No. Spam filters are built to catch volume and pattern-matching. Every Cognenta draft is a unique, 1-to-1 email sent from your AE's actual outbox after human review. It reads like high-effort manual outreach because, structurally, it is."
+      },
+      {
+        q: "Do you support CRMs other than HubSpot and Salesforce?",
+        a: "Yes. For our high-ticket agency clients, we also support GoHighLevel and custom webhook routing. If your team runs on a different CRM, reach out — we'll scope the integration during your Revenue Audit call."
       }
     ]
   },
@@ -66,7 +69,7 @@ export default function FAQ() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl sm:text-5xl font-bold mb-6">Frequently Asked Questions</h1>
-          <p className="text-lg sm:text-xl text-medium-grey">Everything you need to know about pricing, implementation, and security.</p>
+          <p className="text-lg sm:text-xl text-medium-grey">Every question a skeptical founder asks before booking. Answered directly.</p>
         </motion.div>
 
         <div className="space-y-12">
@@ -95,7 +98,7 @@ export default function FAQ() {
                           id={`faq-answer-${id}`}
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
-                          className="px-8 pb-6 text-medium-grey leading-relaxed"
+                          className="px-8 pb-6 text-medium-grey leading-relaxed whitespace-pre-line"
                           role="region"
                           aria-labelledby={`faq-question-${id}`}
                         >
@@ -113,12 +116,12 @@ export default function FAQ() {
         <div className="mt-24 glass p-12 rounded-3xl text-center">
           <h2 className="text-2xl font-bold mb-4">Still have questions?</h2>
           <p className="text-medium-grey mb-8">We're here to help you recover your pipeline.</p>
-          <Link
-            to="/revenue-audit"
+          <a
+            href="/revenue-audit"
             className="bg-cyber-mint text-obsidian px-8 py-4 rounded-full font-bold text-lg mint-glow-hover transition-all duration-200 cursor-pointer inline-block"
           >
             Book Your Free Revenue Audit
-          </Link>
+          </a>
         </div>
       </div>
     </div>

@@ -119,8 +119,8 @@ export default function Integrations() {
           <div className="flex flex-wrap justify-center gap-8 opacity-50 grayscale" aria-label="Integration partners">
             <div className="flex items-center gap-2 font-bold text-lg sm:text-xl"><Database size={24} aria-hidden="true" /> HubSpot</div>
             <div className="flex items-center gap-2 font-bold text-lg sm:text-xl"><Database size={24} aria-hidden="true" /> Salesforce</div>
+            <div className="flex items-center gap-2 font-bold text-lg sm:text-xl"><Database size={24} aria-hidden="true" /> GoHighLevel</div>
             <div className="flex items-center gap-2 font-bold text-lg sm:text-xl"><Slack size={24} aria-hidden="true" /> Slack</div>
-            <div className="flex items-center gap-2 font-bold text-lg sm:text-xl"><Mail size={24} aria-hidden="true" /> Outreach</div>
           </div>
         </div>
       </div>

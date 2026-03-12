@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { ArrowRight, CheckCircle2, Zap, Shield, Users, Quote, Target, Building2, Rocket } from "lucide-react";
+import { ArrowRight, CheckCircle2, Zap, Shield, Users, Target, Building2, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 import BridgeDraftDemo from "../components/BridgeDraftDemo";
@@ -33,8 +33,8 @@ export default function Home() {
                 The Prospect Ghosts.
               </h1>
               <p className="text-lg sm:text-xl text-medium-grey mb-10 max-w-2xl leading-relaxed">
-                The 24-hour window after the qualification call is where 30% of your pipeline dies. 
-                Cognenta closes it — staging a technically grounded bridge email within 15 minutes, built from the prospect's actual call context. You only pay when the meeting shows.
+                You already know the 24-hour window after the qualification call is where your pipeline dies. 
+                Cognenta closes it — staging a technically grounded bridge email — built from the prospect's actual call context — for your AE to review, with a 15-minute target SLA from the moment your SDR submits the handoff form.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
@@ -67,7 +67,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4 uppercase tracking-widest text-cyber-mint">The Dead Zone</h2>
-            <p className="text-medium-grey">Where 30% of your pipeline disappears.</p>
+            <p className="text-medium-grey">Where your pipeline disappears.</p>
           </div>
           
           <div className="relative h-2 bg-white/5 rounded-full mb-12 overflow-hidden" role="img" aria-label="Timeline showing pipeline decay from SDR call to generic invite">
@@ -82,7 +82,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
               <p className="text-xs font-bold text-medium-grey mb-2">MINUTE 0</p>
-              <p className="font-bold">SDR Call Ends</p>
+              <p className="font-bold">SDR Submits Handoff Form</p>
               <p className="text-xs text-medium-grey mt-1">High Intent Peak</p>
             </motion.div>
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 1 }}>
@@ -257,101 +257,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Industry Benchmarks Section */}
-      <section className="py-24 bg-obsidian" aria-label="Industry benchmarks">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Industry Benchmarks</h2>
-            <p className="text-medium-grey max-w-2xl mx-auto">
-              See how Cognenta compares to the industry standard for SDR-to-AE handoff performance.
+      {/* Early Access Results Section */}
+      <section className="py-24 bg-obsidian" aria-label="Early access results">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="glass p-12 rounded-3xl">
+            <h2 className="text-2xl font-bold mb-4">Results from Early Access Clients</h2>
+            <p className="text-medium-grey mb-8">
+              Early access results will be published here. Book your audit to become a founding client.
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                metric: "Demo Show Rate",
-                industry: "62%",
-                cognenta: "84%",
-                desc: "Prospects who actually attend the demo after SDR qualification"
-              },
-              {
-                metric: "Follow-Up Speed",
-                industry: "24+ hours",
-                cognenta: "< 15 min",
-                desc: "Time from SDR call end to AE's first contextual touchpoint"
-              },
-              {
-                metric: "Pipeline Recovery",
-                industry: "—",
-                cognenta: "+30%",
-                desc: "Average increase in pipeline value from reduced ghosting"
-              }
-            ].map((item, i) => (
-              <div key={i} className="glass p-8 rounded-2xl text-center">
-                <h3 className="text-sm font-bold uppercase tracking-widest text-medium-grey mb-6">{item.metric}</h3>
-                <div className="flex justify-center gap-8 mb-6">
-                  <div>
-                    <p className="text-xs text-medium-grey mb-2">Industry Avg</p>
-                    <p className="text-2xl font-mono font-bold text-white/50">{item.industry}</p>
-                  </div>
-                  <div className="w-px bg-white/10" aria-hidden="true"></div>
-                  <div>
-                    <p className="text-xs text-cyber-mint mb-2">With Cognenta</p>
-                    <p className="text-2xl font-mono font-bold text-cyber-mint">{item.cognenta}</p>
-                  </div>
-                </div>
-                <p className="text-xs text-medium-grey leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
+            <Link
+              to="/revenue-audit"
+              className="bg-cyber-mint text-obsidian px-8 py-4 rounded-full font-bold text-lg inline-flex items-center gap-2 mint-glow-hover transition-all duration-200 cursor-pointer"
+            >
+              Book Your Free Revenue Audit
+              <ArrowRight size={20} />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Social Proof Section */}
-      <section className="py-24 bg-white/5 border-y border-white/5" aria-label="What our clients say">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">What Founders Are Saying</h2>
-            <p className="text-medium-grey max-w-2xl mx-auto">Teams using Cognenta recover pipeline they didn't know they were losing.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                quote: "We went from a 58% show rate to 82% in 6 weeks. The bridge drafts are genuinely better than what our AEs were writing manually.",
-                name: "VP of Sales",
-                company: "Series B SaaS — Identity & Access Management",
-              },
-              {
-                quote: "My SDRs used to spend 45 minutes per handoff writing follow-ups. Now they submit 3 bullets and move on. Our pipeline velocity doubled.",
-                name: "Founder & CEO",
-                company: "High-Ticket Agency — Performance Marketing",
-              },
-              {
-                quote: "The accuracy constraint is what sold me. Every claim in the draft is grounded in our actual product docs. No hallucinated features.",
-                name: "CRO",
-                company: "Series A SaaS — DevOps Platform",
-              }
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="glass p-8 rounded-2xl relative"
-              >
-                <Quote className="text-cyber-mint/20 absolute top-6 right-6" size={32} aria-hidden="true" />
-                <p className="text-white/90 leading-relaxed mb-6 italic">"{item.quote}"</p>
-                <div>
-                  <p className="font-bold text-sm">{item.name}</p>
-                  <p className="text-xs text-medium-grey">{item.company}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Who This Is For Section */}
       <section className="py-24" aria-label="Who this is built for">

@@ -34,7 +34,7 @@ export default function BridgeDraftDemo() {
       setOutput(response.text || "Failed to generate draft.");
     } catch (error) {
       console.error(error);
-      setOutput("Error generating draft. Please check your API key.");
+      setOutput("We need a little more context to build a grounded draft. Try adding the prospect's stack, main bottleneck, and timeline.");
     } finally {
       setIsLoading(false);
     }

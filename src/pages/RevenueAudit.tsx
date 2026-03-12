@@ -1,12 +1,14 @@
 import { motion } from "motion/react";
 import { ArrowRight, Calculator, TrendingDown, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import SEO from "../components/SEO";
+import AuditBookingForm from "../components/AuditBookingForm";
 
 export default function RevenueAudit() {
   const [meetings, setMeetings] = useState(40);
   const [dealSize, setDealSize] = useState(15000);
-  const [ghostRate, setGhostRate] = useState(30);
+  const [ghostRate, setGhostRate] = useState(0);
 
   const monthlyLeak = meetings * dealSize * (ghostRate / 100);
 
@@ -99,18 +101,17 @@ export default function RevenueAudit() {
                     ${monthlyLeak.toLocaleString()}
                   </h3>
                 </div>
-                <div className="w-full md:w-auto flex flex-col gap-3">
-                  <label htmlFor="audit-email" className="sr-only">Work Email</label>
-                  <input 
-                    id="audit-email"
-                    type="email" 
-                    placeholder="Work Email" 
-                    className="bg-obsidian border border-white/10 rounded-full px-6 py-3 text-sm focus:outline-none focus:border-cyber-mint/50 transition-colors duration-200"
-                    aria-label="Enter your work email address"
-                  />
-                  <button className="bg-cyber-mint text-obsidian px-8 py-4 rounded-full font-bold text-lg mint-glow-hover transition-all duration-200 cursor-pointer">
-                    Get My Full Audit Report
-                  </button>
+              <div className="w-full md:w-auto flex flex-col gap-3">
+                  <Link
+                    to="#audit-form"
+                    className="bg-cyber-mint text-obsidian px-8 py-4 rounded-full font-bold text-lg mint-glow-hover transition-all duration-200 cursor-pointer text-center"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById('audit-form')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    Book My Free Revenue Audit
+                  </Link>
                 </div>
               </div>
               <p className="mt-4 text-[10px] text-medium-grey/50 text-center md:text-left">
@@ -149,9 +150,18 @@ export default function RevenueAudit() {
                   <span className="text-cyber-mint font-bold" aria-hidden="true">03.</span>
                   <span><strong>Your Custom ROI Projection</strong> — we'll map out exactly what your $200/meeting investment returns.</span>
                 </li>
+                <li className="flex gap-3">
+                  <span className="text-cyber-mint font-bold" aria-hidden="true">04.</span>
+                  <span><strong>Attribution Walkthrough</strong> — we'll also walk you through exactly how attribution works — you never pay for meetings we did not touch.</span>
+                </li>
               </ul>
             </div>
           </div>
+        </div>
+
+        {/* 7-Field Audit Booking Form */}
+        <div id="audit-form" className="mt-16">
+          <AuditBookingForm />
         </div>
       </div>
     </div>
