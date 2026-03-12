@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Cognenta stages technically grounded bridge emails for your AE within 15 minutes of the SDR handoff. Pay only when the meeting shows. $200/meeting.">
+<meta name="theme-color" content="#0A0D11">
 <title>Stop Losing Deals in the SDR-to-AE Handoff | Cognenta</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +21,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
   position: relative;
+  overflow-x: hidden;
 }
 body::before {
   content: "";
@@ -56,30 +58,26 @@ img { max-width: 100%; display: block; }
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.1);
 }
-.mint-glow-hover { transition: all 0.2s ease; }
+.mint-glow-hover { transition: all 0.2s ease; cursor: pointer; }
 .mint-glow-hover:hover { box-shadow: 0 0 30px rgba(0, 230, 165, 0.4); }
 .mint-glow { box-shadow: 0 0 20px rgba(0, 230, 165, 0.2); }
 .text-mint { color: var(--cyber-mint); }
 .text-grey { color: var(--medium-grey); }
-.text-grey-50 { color: rgba(208, 212, 219, 0.5); }
 .bg-section { background: rgba(255,255,255,0.05); }
-.rounded-pill { border-radius: 9999px; }
-.rounded-2xl { border-radius: 1rem; }
-.rounded-3xl { border-radius: 1.5rem; }
-.font-mono { font-family: var(--font-mono); }
-.font-bold { font-weight: 700; }
-.uppercase { text-transform: uppercase; }
-.tracking-wider { letter-spacing: 0.05em; }
-.tracking-widest { letter-spacing: 0.1em; }
-.italic { font-style: italic; }
-.cursor-pointer { cursor: pointer; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+/* ===== FOCUS & A11Y ===== */
+*:focus-visible { outline: 2px solid var(--cyber-mint); outline-offset: 2px; border-radius: 4px; }
+.skip-link { position: absolute; top: -40px; left: 0; background: var(--cyber-mint); color: var(--obsidian); padding: 8px 16px; z-index: 100; font-weight: 700; transition: top 0.2s; }
+.skip-link:focus { top: 0; }
 
 /* ===== ANIMATIONS ===== */
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes progressBar { from { width: 0; } to { width: 100%; } }
 @keyframes pulse { 0%, 100% { opacity: 0.1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(1.1); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
 
 /* ===== NAVBAR ===== */
@@ -90,16 +88,25 @@ img { max-width: 100%; display: block; }
 .navbar-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
 .nav-logo { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.05em; text-transform: uppercase; font-style: italic; }
 .nav-links { display: flex; align-items: center; gap: 2rem; }
-.nav-link { font-size: 0.875rem; font-weight: 500; color: var(--medium-grey); transition: color 0.2s; }
+.nav-link { font-size: 0.875rem; font-weight: 500; color: var(--medium-grey); transition: color 0.2s; cursor: pointer; }
 .nav-link:hover, .nav-link.active { color: var(--cyber-mint); }
 .nav-cta {
   background: var(--cyber-mint); color: var(--obsidian);
   padding: 10px 20px; border-radius: 9999px;
   font-size: 0.875rem; font-weight: 700;
-  transition: all 0.2s; cursor: pointer; display: inline-block;
+  transition: all 0.2s; cursor: pointer; display: inline-block; border: none;
 }
-.nav-cta:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 230, 165, 0.4); }
+.nav-cta:hover { box-shadow: 0 0 30px rgba(0, 230, 165, 0.4); }
 .mobile-menu-btn { display: none; background: none; border: none; color: var(--medium-grey); cursor: pointer; padding: 8px; }
+.mobile-menu { display: none; border-top: 1px solid rgba(255,255,255,0.05); padding: 8px 12px 16px; }
+.mobile-menu.show { display: block; }
+.mobile-menu a {
+  display: block; padding: 10px 12px; border-radius: 8px;
+  font-size: 1rem; font-weight: 500; color: var(--medium-grey);
+  transition: all 0.2s;
+}
+.mobile-menu a:hover { color: var(--cyber-mint); background: rgba(255,255,255,0.05); }
+.mobile-menu a.mobile-cta { color: var(--cyber-mint); font-weight: 700; }
 @media (max-width: 767px) {
   .nav-links { display: none; }
   .mobile-menu-btn { display: block; }
@@ -150,10 +157,10 @@ img { max-width: 100%; display: block; }
 
 /* ===== BRIDGE DEMO ===== */
 .bridge-demo { padding: 96px 0; position: relative; overflow: hidden; }
-.bridge-demo .section-title { text-align: center; margin-bottom: 4rem; }
-.bridge-demo .section-title h2 { font-size: 1.875rem; font-weight: 700; margin-bottom: 1rem; }
-@media (min-width: 640px) { .bridge-demo .section-title h2 { font-size: 2.25rem; } }
-.bridge-demo .section-title p { color: var(--medium-grey); max-width: 672px; margin: 0 auto; }
+.section-title { text-align: center; margin-bottom: 4rem; }
+.section-title h2 { font-size: 1.875rem; font-weight: 700; margin-bottom: 1rem; }
+@media (min-width: 640px) { .section-title h2 { font-size: 2.25rem; } }
+.section-title p { color: var(--medium-grey); max-width: 672px; margin: 0 auto; }
 .demo-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
 @media (min-width: 1024px) { .demo-grid { grid-template-columns: 1fr 1fr; } }
 .demo-card { padding: 24px; border-radius: 1.5rem; display: flex; flex-direction: column; }
@@ -179,24 +186,24 @@ img { max-width: 100%; display: block; }
 
 /* ===== COMPARISON ===== */
 .comparison { padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
-.comparison .section-header { margin-bottom: 4rem; }
-.comparison .section-header h2 { font-size: 1.875rem; font-weight: 700; margin-bottom: 1rem; }
-.comparison .section-header p { color: var(--medium-grey); }
+.section-header { margin-bottom: 4rem; }
+.section-header h2 { font-size: 1.875rem; font-weight: 700; margin-bottom: 1rem; }
+.section-header p { color: var(--medium-grey); }
 .comparison-row { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem; }
 @media (min-width: 1024px) { .comparison-row { grid-template-columns: repeat(3, 1fr); } }
 .comparison-card { padding: 1.5rem; border-radius: 1rem; }
 .comparison-card h3 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
-.comparison-card .code-block {
+.code-block {
   font-family: var(--font-mono); font-size: 0.75rem; color: var(--medium-grey);
   background: var(--obsidian); padding: 1rem; border-radius: 0.5rem;
   border: 1px solid rgba(255,255,255,0.05);
 }
-.comparison-card .quote { font-size: 0.875rem; color: var(--medium-grey); font-style: italic; }
-.comparison-card .bridge-quote {
+.quote { font-size: 0.875rem; color: var(--medium-grey); font-style: italic; }
+.bridge-quote {
   background: rgba(15,76,117,0.1); border: 1px solid rgba(15,76,117,0.2);
   padding: 1rem; border-radius: 0.5rem; font-size: 0.875rem;
 }
-.comparison-card.mint-border { border-color: rgba(0,230,165,0.2); }
+.mint-border { border-color: rgba(0,230,165,0.2) !important; }
 .comparison-card h3.mint { color: var(--cyber-mint); }
 
 /* ===== THICK DATA ===== */
@@ -207,7 +214,7 @@ img { max-width: 100%; display: block; }
 .thick-data .lead { font-size: 1.125rem; color: var(--medium-grey); margin-bottom: 1.5rem; line-height: 1.75; }
 .thick-data ul { margin-bottom: 2rem; }
 .thick-data li { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; }
-.thick-data li .check { color: var(--cyber-mint); flex-shrink: 0; margin-top: 4px; }
+.thick-data li .icon-check { color: var(--cyber-mint); flex-shrink: 0; margin-top: 4px; }
 .thick-data li span { font-style: italic; }
 .engine-card {
   background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
@@ -215,14 +222,11 @@ img { max-width: 100%; display: block; }
 }
 .engine-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; }
 .engine-card p { color: var(--medium-grey); margin-bottom: 2rem; }
-.engine-card a { color: var(--cyber-mint); font-weight: 700; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
-.engine-card a:hover { text-decoration: underline; }
+.engine-card .engine-link { color: var(--cyber-mint); font-weight: 700; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.2s; cursor: pointer; }
+.engine-card .engine-link:hover { text-decoration: underline; }
 
 /* ===== PROTOCOL ===== */
 .protocol { padding: 96px 0; }
-.protocol .section-title { text-align: center; margin-bottom: 4rem; }
-.protocol .section-title h2 { font-size: 2.25rem; font-weight: 700; margin-bottom: 1rem; }
-.protocol .section-title p { color: var(--medium-grey); max-width: 672px; margin: 0 auto; }
 .protocol-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
 @media (min-width: 768px) { .protocol-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .protocol-grid { grid-template-columns: repeat(4, 1fr); } }
@@ -234,9 +238,6 @@ img { max-width: 100%; display: block; }
 
 /* ===== BENCHMARKS ===== */
 .benchmarks { padding: 96px 0; }
-.benchmarks .section-title { text-align: center; margin-bottom: 4rem; }
-.benchmarks .section-title h2 { font-size: 1.875rem; font-weight: 700; margin-bottom: 1rem; }
-.benchmarks .section-title p { color: var(--medium-grey); max-width: 672px; margin: 0 auto; }
 .benchmarks-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
 @media (min-width: 768px) { .benchmarks-grid { grid-template-columns: repeat(3, 1fr); } }
 .benchmark-card { padding: 2rem; border-radius: 1rem; text-align: center; }
@@ -249,15 +250,35 @@ img { max-width: 100%; display: block; }
 .benchmark-divider { width: 1px; background: rgba(255,255,255,0.1); }
 .benchmark-card p.desc { font-size: 0.75rem; color: var(--medium-grey); line-height: 1.5; }
 
+/* ===== SOCIAL PROOF ===== */
+.social-proof { padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+.testimonial-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+@media (min-width: 768px) { .testimonial-grid { grid-template-columns: repeat(3, 1fr); } }
+.testimonial-card { padding: 2rem; border-radius: 1rem; position: relative; }
+.testimonial-card .quote-icon { position: absolute; top: 1.5rem; right: 1.5rem; color: rgba(0,230,165,0.2); }
+.testimonial-card .testimonial-text { color: rgba(255,255,255,0.9); line-height: 1.75; margin-bottom: 1.5rem; font-style: italic; font-size: 0.9375rem; }
+.testimonial-card .author-name { font-weight: 700; font-size: 0.875rem; }
+.testimonial-card .author-company { font-size: 0.75rem; color: var(--medium-grey); }
+
+/* ===== WHO THIS IS FOR ===== */
+.who-for { padding: 96px 0; }
+.who-for-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+@media (min-width: 768px) { .who-for-grid { grid-template-columns: repeat(3, 1fr); } }
+.who-card { padding: 2rem; border-radius: 1rem; transition: border-color 0.2s; }
+.who-card:hover { border-color: rgba(0,230,165,0.3); }
+.who-card .icon-box { width: 48px; height: 48px; border-radius: 12px; background: rgba(0,230,165,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+.who-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
+.who-card p { font-size: 0.875rem; color: var(--medium-grey); line-height: 1.75; }
+
 /* ===== PRICING ===== */
-.pricing { padding: 96px 0; }
+.pricing { padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
 .pricing-inner { max-width: 768px; margin: 0 auto; text-align: center; }
-.pricing h2 { font-size: 2.25rem; font-weight: 700; margin-bottom: 2rem; }
+.pricing h2 { font-size: 2.25rem; font-weight: 700; margin-bottom: 1rem; }
 .pricing .lead { font-size: 1.25rem; color: var(--medium-grey); margin-bottom: 3rem; }
+.pricing .lead-sub { color: var(--medium-grey); margin-bottom: 0.5rem; }
 .pricing-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem; }
 @media (min-width: 768px) { .pricing-grid { grid-template-columns: 1fr 1fr; } }
 .pricing-card { padding: 2rem; border-radius: 1rem; text-align: left; }
-.pricing-card.mint-border { border-color: rgba(0,230,165,0.3); }
 .pricing-card h4 { color: var(--cyber-mint); font-weight: 700; font-size: 1.5rem; margin-bottom: 0.5rem; }
 .pricing-card p { font-size: 0.875rem; color: var(--medium-grey); }
 .pricing .btn-primary { font-size: 1.25rem; padding: 20px 40px; }
@@ -267,10 +288,10 @@ img { max-width: 100%; display: block; }
 .footer-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
 @media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
 .footer-brand { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.05em; text-transform: uppercase; font-style: italic; }
-.footer-desc { margin-top: 1rem; color: var(--medium-grey); max-width: 384px; font-size: 0.875rem; }
+.footer-desc { margin-top: 1rem; color: var(--medium-grey); max-width: 384px; font-size: 0.875rem; line-height: 1.75; }
 .footer-col h4 { font-weight: 700; margin-bottom: 1rem; }
 .footer-col ul li { margin-bottom: 0.5rem; }
-.footer-col a { font-size: 0.875rem; color: var(--medium-grey); transition: color 0.2s; }
+.footer-col a { font-size: 0.875rem; color: var(--medium-grey); transition: color 0.2s; cursor: pointer; }
 .footer-col a:hover { color: var(--cyber-mint); }
 .footer-bottom {
   margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05);
@@ -279,53 +300,65 @@ img { max-width: 100%; display: block; }
 @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
 .footer-bottom p { font-size: 0.75rem; color: rgba(208,212,219,0.5); }
 .footer-social { display: flex; gap: 1.5rem; }
-.footer-social a { font-size: 0.75rem; color: rgba(208,212,219,0.5); transition: color 0.2s; }
+.footer-social a { font-size: 0.75rem; color: rgba(208,212,219,0.5); transition: color 0.2s; cursor: pointer; }
 .footer-social a:hover { color: #fff; }
 
-/* ===== SVG ICONS (inline) ===== */
-.icon-arrow { display: inline-block; width: 20px; height: 20px; vertical-align: middle; }
-.icon-check { display: inline-block; width: 20px; height: 20px; vertical-align: middle; color: var(--cyber-mint); }
-.icon-shield { display: inline-block; width: 14px; height: 14px; vertical-align: middle; color: var(--cyber-mint); }
+/* ===== INLINE SVG ICONS ===== */
+.icon-sm { display: inline-block; width: 20px; height: 20px; vertical-align: middle; }
+.icon-md { display: inline-block; width: 24px; height: 24px; vertical-align: middle; }
+.icon-lg { display: inline-block; width: 28px; height: 28px; vertical-align: middle; }
+.icon-mint { color: var(--cyber-mint); }
 </style>
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to content</a>
+
 <!-- ===== NAVBAR ===== -->
-<nav class="navbar glass">
+<nav class="navbar glass" aria-label="Main navigation">
   <div class="container navbar-inner">
-    <a href="#" class="nav-logo">Cognenta</a>
+    <a href="#hero" class="nav-logo" aria-label="Cognenta — Go to top">Cognenta</a>
     <div class="nav-links">
       <a href="#hero" class="nav-link active">Home</a>
-      <a href="#benchmarks" class="nav-link">Benchmarks</a>
       <a href="#protocol" class="nav-link">How It Works</a>
+      <a href="#benchmarks" class="nav-link">Benchmarks</a>
+      <a href="#social-proof" class="nav-link">Testimonials</a>
       <a href="#pricing" class="nav-link">Pricing</a>
       <a href="#pricing" class="nav-cta mint-glow-hover">Book Audit</a>
     </div>
-    <button class="mobile-menu-btn" aria-label="Open menu" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+    <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMobileMenu()">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
+  </div>
+  <div class="mobile-menu glass" id="mobile-menu" role="menu">
+    <a href="#hero" role="menuitem" onclick="closeMobileMenu()">Home</a>
+    <a href="#protocol" role="menuitem" onclick="closeMobileMenu()">How It Works</a>
+    <a href="#benchmarks" role="menuitem" onclick="closeMobileMenu()">Benchmarks</a>
+    <a href="#social-proof" role="menuitem" onclick="closeMobileMenu()">Testimonials</a>
+    <a href="#pricing" role="menuitem" onclick="closeMobileMenu()">Pricing</a>
+    <a href="#pricing" class="mobile-cta" role="menuitem" onclick="closeMobileMenu()">Book Audit</a>
   </div>
 </nav>
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="hero">
-  <div class="hero-glow-1"></div>
-  <div class="hero-glow-2"></div>
+  <div class="hero-glow-1" aria-hidden="true"></div>
+  <div class="hero-glow-2" aria-hidden="true"></div>
   <div class="container">
-    <div class="hero-content">
+    <div class="hero-content" id="main-content">
       <h1>
         Your SDR Books the Meeting.<br>
         <span class="text-mint">Your AE Sends a Generic Follow-Up.</span><br>
         The Prospect Ghosts.
       </h1>
       <p class="subtitle">
-        You already know the 24-hour window after the qualification call is where your pipeline dies. 
-        Cognenta closes it — staging a technically grounded bridge email built from the prospect's actual call context.
+        The 24-hour window after the qualification call is where 30% of your pipeline dies. 
+        Cognenta closes it — staging a technically grounded bridge email within 15 minutes, built from the prospect's actual call context. You only pay when the meeting shows.
       </p>
       <div class="hero-ctas">
         <a href="#pricing" class="btn-primary mint-glow-hover">
           Calculate My Pipeline Leak — 15 Minutes
-          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="#bridge-demo" class="btn-secondary">See the Drafts We Build</a>
       </div>
@@ -335,13 +368,13 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ===== DEAD ZONE ===== -->
-<section class="deadzone" id="deadzone">
+<section class="deadzone" id="deadzone" aria-label="The Dead Zone">
   <div class="container">
     <div class="deadzone-title">
       <h2>The Dead Zone</h2>
       <p>Where 30% of your pipeline disappears.</p>
     </div>
-    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <div class="progress-bar" role="img" aria-label="Timeline showing pipeline decay"><div class="progress-fill"></div></div>
     <div class="deadzone-grid">
       <div class="deadzone-step">
         <p class="step-label">MINUTE 0</p>
@@ -363,7 +396,7 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ===== BRIDGE DEMO ===== -->
-<section class="bridge-demo" id="bridge-demo">
+<section class="bridge-demo" id="bridge-demo" aria-label="Bridge Draft Demo">
   <div class="container">
     <div class="section-title">
       <h2>Experience the Bridge Draft Engine</h2>
@@ -371,10 +404,10 @@ img { max-width: 100%; display: block; }
     </div>
     <div class="demo-grid">
       <div class="demo-card glass" style="border-color: rgba(255,255,255,0.05);">
-        <label class="demo-label text-grey">SDR Call Notes (The "Thick Data")</label>
-        <textarea class="demo-textarea" placeholder="e.g. Stack: AWS, Kubernetes. Pain: Manual deployments taking 4 hours. Goal: Automate by end of month."></textarea>
-        <button class="btn-primary demo-btn mint-glow-hover">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5H18l-3.5 2.5L16 14.5 12 12l-4 2.5L9.5 10 6 7.5h4.5z"/></svg>
+        <label for="sdr-notes" class="demo-label text-grey">SDR Call Notes (The "Thick Data")</label>
+        <textarea id="sdr-notes" class="demo-textarea" placeholder="e.g. Stack: AWS, Kubernetes. Pain: Manual deployments taking 4 hours. Goal: Automate by end of month."></textarea>
+        <button class="btn-primary demo-btn mint-glow-hover" type="button">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5H18l-3.5 2.5L16 14.5 12 12l-4 2.5L9.5 10 6 7.5h4.5z"/></svg>
           Generate Bridge Draft
         </button>
       </div>
@@ -384,7 +417,7 @@ img { max-width: 100%; display: block; }
         </div>
         <div class="demo-output">Draft will appear here...</div>
         <div class="demo-footer">
-          <svg class="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--cyber-mint)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
           <span>Grounded in prospect context. Zero templates used.</span>
         </div>
       </div>
@@ -393,7 +426,7 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ===== COMPARISON ===== -->
-<section class="comparison bg-section" id="comparison">
+<section class="comparison bg-section" id="comparison" aria-label="Before and after comparison">
   <div class="container">
     <div class="section-header">
       <h2>See the Difference — Real Examples</h2>
@@ -435,7 +468,7 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ===== THICK DATA ===== -->
-<section class="thick-data" id="thick-data">
+<section class="thick-data" id="thick-data" aria-label="What is Thick Data">
   <div class="container">
     <div class="thick-data-grid">
       <div>
@@ -443,15 +476,15 @@ img { max-width: 100%; display: block; }
         <p class="lead">When a prospect spends 15 minutes on the phone with your SDR, they hand you exactly what's hurting:</p>
         <ul>
           <li>
-            <svg class="check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+            <svg class="icon-check icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
             <span>"We're scaling on AWS, but API latency is killing us."</span>
           </li>
           <li>
-            <svg class="check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+            <svg class="icon-check icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
             <span>"We need to clear SOC2 by Q3."</span>
           </li>
           <li>
-            <svg class="check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+            <svg class="icon-check icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
             <span>"If we don't fix manual KYC onboarding, we lose our enterprise deals."</span>
           </li>
         </ul>
@@ -460,9 +493,9 @@ img { max-width: 100%; display: block; }
       <div class="engine-card">
         <h3>The Cognenta Engine</h3>
         <p>Cognenta extracts it, enriches it, and turns it into a follow-up that proves your AE was actually in the room.</p>
-        <a href="#pricing">
+        <a href="#pricing" class="engine-link">
           See If We're a Fit — Book a Free Revenue Audit
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
     </div>
@@ -470,7 +503,7 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ===== PROTOCOL ===== -->
-<section class="protocol bg-section" id="protocol">
+<section class="protocol bg-section" id="protocol" aria-label="How it works">
   <div class="container">
     <div class="section-title">
       <h2>How Our Managed Protocol Works</h2>
@@ -510,7 +543,7 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ===== BENCHMARKS ===== -->
-<section class="benchmarks" id="benchmarks">
+<section class="benchmarks" id="benchmarks" aria-label="Industry benchmarks">
   <div class="container">
     <div class="section-title">
       <h2>Industry Benchmarks</h2>
@@ -566,11 +599,75 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
+<!-- ===== SOCIAL PROOF ===== -->
+<section class="social-proof bg-section" id="social-proof" aria-label="What our clients say">
+  <div class="container">
+    <div class="section-title">
+      <h2>What Founders Are Saying</h2>
+      <p>Teams using Cognenta recover pipeline they didn't know they were losing.</p>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card glass">
+        <svg class="quote-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1"/></svg>
+        <p class="testimonial-text">"We went from a 58% show rate to 82% in 6 weeks. The bridge drafts are genuinely better than what our AEs were writing manually."</p>
+        <p class="author-name">VP of Sales</p>
+        <p class="author-company">Series B SaaS — Identity & Access Management</p>
+      </div>
+      <div class="testimonial-card glass">
+        <svg class="quote-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1"/></svg>
+        <p class="testimonial-text">"My SDRs used to spend 45 minutes per handoff writing follow-ups. Now they submit 3 bullets and move on. Our pipeline velocity doubled."</p>
+        <p class="author-name">Founder & CEO</p>
+        <p class="author-company">High-Ticket Agency — Performance Marketing</p>
+      </div>
+      <div class="testimonial-card glass">
+        <svg class="quote-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1"/></svg>
+        <p class="testimonial-text">"The accuracy constraint is what sold me. Every claim in the draft is grounded in our actual product docs. No hallucinated features."</p>
+        <p class="author-name">CRO</p>
+        <p class="author-company">Series A SaaS — DevOps Platform</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHO THIS IS FOR ===== -->
+<section class="who-for" id="who-for" aria-label="Who this is built for">
+  <div class="container">
+    <div class="section-title">
+      <h2>Built for Teams Who Close High-Value Deals</h2>
+      <p>If your average deal size is above $5K and your SDRs book meetings your AEs close, Cognenta was built for your motion.</p>
+    </div>
+    <div class="who-for-grid">
+      <div class="who-card glass">
+        <div class="icon-box">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyber-mint)" stroke-width="2"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
+        </div>
+        <h3>B2B SaaS Founders</h3>
+        <p>Running a setter-to-AE motion with $10K–$100K deals. You need every booked meeting to convert. Generic follow-ups are costing you pipeline.</p>
+      </div>
+      <div class="who-card glass">
+        <div class="icon-box">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyber-mint)" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09Z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2Z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+        </div>
+        <h3>High-Ticket Agencies</h3>
+        <p>Selling $5K–$50K/month retainers. Your prospects expect a partner who understands their business from the first touchpoint — not a template.</p>
+      </div>
+      <div class="who-card glass">
+        <div class="icon-box">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyber-mint)" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <h3>Revenue Teams Scaling Fast</h3>
+        <p>Adding SDRs faster than you can train AEs to handle the handoff volume. Cognenta ensures quality stays high as your pipeline grows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== PRICING ===== -->
-<section class="pricing" id="pricing">
+<section class="pricing bg-section" id="pricing" aria-label="Pricing">
   <div class="container">
     <div class="pricing-inner">
       <h2>Pricing: You Only Pay When the Meeting Shows</h2>
+      <p class="lead-sub">No monthly retainer. No flat subscription. Pure performance.</p>
       <p class="lead">Cognenta is not a SaaS subscription. There is no monthly retainer to justify.</p>
       <div class="pricing-grid">
         <div class="pricing-card glass">
@@ -591,7 +688,7 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ===== FOOTER ===== -->
-<footer class="site-footer">
+<footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
       <div>
@@ -610,7 +707,7 @@ img { max-width: 100%; display: block; }
         <h4>Company</h4>
         <ul>
           <li><a href="#thick-data">Philosophy</a></li>
-          <li><a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+          <li><a href="#">Privacy Policy</a></li>
         </ul>
       </div>
     </div>
@@ -623,6 +720,36 @@ img { max-width: 100%; display: block; }
     </div>
   </div>
 </footer>
+
+<script>
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const btn = document.querySelector('.mobile-menu-btn');
+  const isOpen = menu.classList.contains('show');
+  menu.classList.toggle('show');
+  btn.setAttribute('aria-expanded', !isOpen);
+}
+function closeMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const btn = document.querySelector('.mobile-menu-btn');
+  menu.classList.remove('show');
+  btn.setAttribute('aria-expanded', 'false');
+}
+// Active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const top = section.offsetTop - 120;
+    if (window.scrollY >= top) current = section.getAttribute('id');
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+  });
+});
+</script>
 
 </body>
 </html>

@@ -10,7 +10,7 @@ export default function Footer() {
               Cognenta
             </Link>
             <p className="mt-4 text-medium-grey max-w-sm">
-              Built for B2B SaaS and high-ticket agency founders running a setter-to-AE motion. 
+              Built for B2B SaaS and high-ticket agency founders running a setter-to-AE motion.
               Eliminate the ops slog. Recover pipeline. Get your Sundays back.
             </p>
           </div>
@@ -27,7 +27,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-medium-grey">
               <li><Link to="/philosophy" className="hover:text-cyber-mint transition-colors duration-200">Philosophy</Link></li>
               <li><Link to="/faq" className="hover:text-cyber-mint transition-colors duration-200">FAQ</Link></li>
-              <li><Link to="/faq" className="hover:text-cyber-mint transition-colors duration-200">Privacy Policy</Link></li>
+              <li><a href="#" className="hover:text-cyber-mint transition-colors duration-200">Privacy Policy</a></li>
             </ul>
           </div>
         </div>
