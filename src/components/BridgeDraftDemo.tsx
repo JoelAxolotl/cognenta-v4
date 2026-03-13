@@ -65,7 +65,7 @@ export default function BridgeDraftDemo() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="e.g. Stack: AWS, Kubernetes. Pain: Manual deployments taking 4 hours. Goal: Automate by end of month."
-              className="grow bg-obsidian/50 border border-white/10 rounded-2xl p-6 text-white placeholder:text-medium-grey/30 focus:outline-none focus:border-cyber-mint/50 transition-colors duration-200 resize-none min-h-[200px]"
+              className="grow bg-obsidian/50 border border-white/10 rounded-2xl p-6 text-white placeholder:text-medium-grey/30 focus:outline-none focus:border-cyber-mint/50 transition-colors duration-200 resize-none min-h-[140px]"
               aria-label="Enter your SDR call notes"
             />
             <button

@@ -39,7 +39,7 @@ const faqs = [
     questions: [
       {
         q: "How do we know our data is safe?",
-        a: "Cognenta is a managed routing and drafting protocol, not a data warehouse. We practice data minimization by design. Once a draft is staged in your review queue, we apply a zero-retention policy to the prospect's raw call notes and PII."
+        a: "Cognenta is a managed routing and drafting protocol, not a data warehouse. We practice data minimization by design. Once a draft is staged in your review queue, we apply a zero-retention policy to the prospect's raw call notes and PII.\n\nWe only retain the anonymized CRM Deal ID so our system can track whether the meeting was held for billing purposes. We do not hold conversational data we do not need."
       },
       {
         q: "Why API keys instead of a native app?",

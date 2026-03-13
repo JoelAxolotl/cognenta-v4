@@ -19,7 +19,7 @@ export default function RevenueAudit() {
         description="Find out exactly how much pipeline you're losing to slow, generic SDR-to-AE follow-ups. Book a 15-minute audit and get a live ROI projection for your deal size."
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -128,7 +128,7 @@ export default function RevenueAudit() {
                 The Real Cost
               </h4>
               <p className="text-sm text-medium-grey leading-relaxed">
-                Every hour a high-intent prospect sits without a contextual, technical response after the SDR call, your demo show rate drops. Find your row and recover your pipeline.
+                Every hour a high-intent prospect sits without a contextual, technical response after the SDR call, your demo show rate drops. Enter your numbers below to see your monthly pipeline leak.
               </p>
             </div>
 
@@ -144,7 +144,7 @@ export default function RevenueAudit() {
                 </li>
                 <li className="flex gap-3">
                   <span className="text-cyber-mint font-bold" aria-hidden="true">02.</span>
-                  <span><strong>3 Live Bridge Draft Examples</strong> — bring us raw CRM notes from your three most recent ghosted deals. We'll build the drafts live.</span>
+                  <span><strong>3 Live Bridge Draft Examples</strong> — bring us raw CRM notes from your three most recent ghosted or slow deals. We'll build the drafts live.</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="text-cyber-mint font-bold" aria-hidden="true">03.</span>
@@ -153,6 +153,10 @@ export default function RevenueAudit() {
                 <li className="flex gap-3">
                   <span className="text-cyber-mint font-bold" aria-hidden="true">04.</span>
                   <span><strong>Attribution Walkthrough</strong> — we'll also walk you through exactly how attribution works — you never pay for meetings we did not touch.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-cyber-mint font-bold" aria-hidden="true">05.</span>
+                  <span><strong>CRM Compatibility Check</strong> — We'll review your current routing. Even if you aren't on HubSpot or Salesforce, we can integrate into almost all CRMs and build the custom connection in most cases within 48 hours without disrupting your team.</span>
                 </li>
               </ul>
             </div>

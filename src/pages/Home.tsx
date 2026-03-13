@@ -20,7 +20,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -32,11 +32,11 @@ export default function Home() {
                 <span className="text-cyber-mint">Your AE Sends a Generic Follow-Up.</span> <br />
                 The Prospect Ghosts.
               </h1>
-              <p className="text-lg sm:text-xl text-medium-grey mb-10 max-w-2xl leading-relaxed">
+              <p className="text-lg sm:text-xl text-medium-grey mb-10 max-w-2xl mx-auto leading-relaxed">
                 You already know the 24-hour window after the qualification call is where your pipeline dies. 
                 Cognenta closes it — staging a technically grounded bridge email — built from the prospect's actual call context — for your AE to review, with a 15-minute target SLA from the moment your SDR submits the handoff form.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   to="/revenue-audit"
                   className="bg-cyber-mint text-obsidian px-8 py-4 rounded-full font-bold text-lg flex items-center justify-center gap-2 mint-glow-hover transition-all duration-200 cursor-pointer"
@@ -63,14 +63,14 @@ export default function Home() {
       </section>
 
       {/* Dead Zone Visual Section */}
-      <section className="py-24 bg-obsidian relative overflow-hidden" aria-label="The Dead Zone">
+      <section className="py-16 bg-obsidian relative overflow-hidden" aria-label="The Dead Zone">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4 uppercase tracking-widest text-cyber-mint">The Dead Zone</h2>
             <p className="text-medium-grey">Where your pipeline disappears.</p>
           </div>
           
-          <div className="relative h-2 bg-white/5 rounded-full mb-12 overflow-hidden" role="img" aria-label="Timeline showing pipeline decay from SDR call to generic invite">
+          <div className="relative h-2 bg-white/5 rounded-full mb-8 overflow-hidden" role="img" aria-label="Timeline showing pipeline decay from SDR call to generic invite">
             <motion.div 
               initial={{ width: 0 }}
               whileInView={{ width: "100%" }}
@@ -126,9 +126,11 @@ export default function Home() {
               </div>
               <div className="glass p-6 rounded-2xl">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-medium-grey mb-4">Standard AE Follow-Up</h3>
-                <p className="text-sm text-medium-grey italic">
-                  "Great chatting! Looking forward to showing you our tool on Thursday."
-                </p>
+                <div className="bg-obsidian p-4 rounded-lg border border-white/5">
+                  <p className="text-sm text-medium-grey italic">
+                    "Great chatting! Looking forward to showing you our tool on Thursday."
+                  </p>
+                </div>
               </div>
               <div className="glass p-6 rounded-2xl border-cyber-mint/20">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-cyber-mint mb-4">The Cognenta Bridge Draft</h3>
@@ -152,9 +154,11 @@ export default function Home() {
               </div>
               <div className="glass p-6 rounded-2xl">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-medium-grey mb-4">Standard AE Follow-Up</h3>
-                <p className="text-sm text-medium-grey italic">
-                  "Here's a link to our API docs before our call."
-                </p>
+                <div className="bg-obsidian p-4 rounded-lg border border-white/5">
+                  <p className="text-sm text-medium-grey italic">
+                    "Here's a link to our API docs before our call."
+                  </p>
+                </div>
               </div>
               <div className="glass p-6 rounded-2xl border-cyber-mint/20">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-cyber-mint mb-4">The Cognenta Bridge Draft</h3>
@@ -196,8 +200,8 @@ export default function Home() {
               </p>
             </div>
             <div className="bg-white/5 border border-white/10 p-8 rounded-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-4" aria-hidden="true">
-                <Zap className="text-cyber-mint opacity-20" size={120} />
+              <div className="absolute top-4 right-4 overflow-hidden" aria-hidden="true">
+                <Zap className="text-cyber-mint opacity-20" size={80} />
               </div>
               <h3 className="text-2xl font-bold mb-6">The Cognenta Engine</h3>
               <p className="text-medium-grey mb-8">
@@ -257,24 +261,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Early Access Results Section */}
-      <section className="py-24 bg-obsidian" aria-label="Early access results">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="glass p-12 rounded-3xl">
-            <h2 className="text-2xl font-bold mb-4">Results from Early Access Clients</h2>
-            <p className="text-medium-grey mb-8">
-              Early access results will be published here. Book your audit to become a founding client.
-            </p>
-            <Link
-              to="/revenue-audit"
-              className="bg-cyber-mint text-obsidian px-8 py-4 rounded-full font-bold text-lg inline-flex items-center gap-2 mint-glow-hover transition-all duration-200 cursor-pointer"
-            >
-              Book Your Free Revenue Audit
-              <ArrowRight size={20} />
-            </Link>
-          </div>
-        </div>
-      </section>
+
 
 
 

@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Target, ShieldAlert, Zap, ArrowRight } from "lucide-react";
+import { Target, ShieldAlert, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 
@@ -11,7 +11,7 @@ export default function Philosophy() {
         description="Generic personalization loses deals. Cognenta builds follow-ups from the specific technical context your prospects volunteer on qualification calls — not scraped demographics."
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -33,14 +33,14 @@ export default function Philosophy() {
               Thin Data
             </h3>
             <p className="text-medium-grey leading-relaxed mb-6">
-              Thin Data is demographic — who someone is. Useful for cold outreach. Tells you almost nothing about what a specific person needs right now.
+              Thin Data is demographic — who someone is. Useful for initial prospecting. Tells you almost nothing about what a specific person needs right now.
             </p>
             <div className="bg-obsidian p-5 rounded-xl border border-white/5 font-mono text-xs text-medium-grey/50 mb-4">
               <p className="mb-1 text-medium-grey/30 text-[10px] uppercase tracking-wider font-sans font-bold">Template Follow-Up</p>
-              [Template] Hi {"{first_name}"}, I saw you work at {"{company_name}"}. We help companies like yours streamline their operations. Would love to set up 15 minutes to show you how.
+              [Template] Hi {"{first_name}"}, Great connecting with my colleague today. Looking forward to showing you our platform on Thursday. Here is a link to our homepage before the call.
             </div>
             <p className="text-xs text-medium-grey/40 italic">
-              Scraped from LinkedIn. No context from the actual conversation. Zero signal that your team was listening.
+              Generic AE handoff. No context from the actual SDR conversation. Zero signal that your team was listening.
             </p>
           </div>
 
@@ -55,7 +55,7 @@ export default function Philosophy() {
             </p>
             <div className="bg-obsidian p-5 rounded-xl border border-cyber-mint/20 font-mono text-xs text-cyber-mint/80 mb-4">
               <p className="mb-1 text-cyber-mint/40 text-[10px] uppercase tracking-wider font-sans font-bold">Cognenta Bridge Draft</p>
-              "Since you mentioned your manual KYC process is bottlenecking your Q3 goals, I pulled your Auth0 setup and mapped how teams at your stage have reduced onboarding latency by 60%. I've outlined two approaches we can walk through on Thursday — both built around your current identity stack so there's no rip-and-replace."
+              "Since you mentioned your manual KYC process is bottlenecking your Q3 goals, I pulled your Auth0 setup and mapped how teams at your stage have meaningfully reduced onboarding latency. I've outlined two approaches we can walk through on Thursday — both built around your current identity stack so there's no rip-and-replace."
             </div>
             <p className="text-xs text-cyber-mint/40 italic">
               Grounded in the prospect's actual call context. Two-sentence opening that proves the AE understood the pain.
@@ -79,15 +79,7 @@ export default function Philosophy() {
                 "Accuracy isn't a feature we've added. It's a constraint our entire internal ops stack is built around. Nothing gets staged for your AEs that isn't grounded in your product docs and the prospect's verified reality."
               </p>
             </blockquote>
-            <div className="mt-8 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-cyber-mint/20 flex items-center justify-center" aria-hidden="true">
-                <Zap className="text-cyber-mint" />
-              </div>
-              <div>
-                <p className="font-bold">The Cognenta Promise</p>
-                <p className="text-sm text-medium-grey">Zero-Template Policy</p>
-              </div>
-            </div>
+
           </div>
         </div>
 

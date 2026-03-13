@@ -10,7 +10,7 @@ export default function Integrations() {
         description="Cognenta syncs directly with HubSpot and Salesforce. No new dashboards. No double data entry. Technically grounded AE drafts staged in Slack or email."
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -77,8 +77,9 @@ export default function Integrations() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 className="flex flex-col items-center text-center relative"
               >
-                <div className="w-20 h-20 rounded-2xl bg-cyber-mint/10 border border-cyber-mint/30 flex items-center justify-center mb-6 mint-glow">
-                  <Database className="text-cyber-mint" size={32} aria-hidden="true" />
+                <div className="w-20 h-20 rounded-2xl bg-cyber-mint/10 border border-cyber-mint/30 flex flex-col items-center justify-center mb-6 mint-glow">
+                  <span className="text-cyber-mint font-mono font-bold text-sm mb-1">02</span>
+                  <Database className="text-cyber-mint" size={24} aria-hidden="true" />
                 </div>
                 <h4 className="font-bold mb-2">Cognenta Engine</h4>
                 <p className="text-xs text-medium-grey">Enrichment & Technical Drafting</p>
