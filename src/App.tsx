@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { Analytics } from "@vercel/analytics/next"
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -13,6 +14,7 @@ import FAQ from "./pages/FAQ";
 export default function App() {
   return (
     <HelmetProvider>
+      <Analytics />
       <Router>
         <ScrollToTop />
         <div className="min-h-screen flex flex-col">
