@@ -1,47 +1,94 @@
-import { useState } from "react";
-import { GoogleGenAI } from "@google/genai";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Sparkles, Send, Loader2, Copy, Check, ShieldCheck } from "lucide-react";
+import { Sparkles, Loader2, Copy, Check, ShieldCheck, Mail } from "lucide-react";
+
+const DEMO_API_URL = process.env.DEMO_API_URL || "http://localhost:3001";
+const DEMO_API_KEY = process.env.DEMO_API_KEY || "";
+
+const LOADING_STEPS = [
+  "Analyzing SDR notes...",
+  "Extracting prospect intelligence...",
+  "Identifying pain points & intent...",
+  "Building personalized bridge draft...",
+  "Polishing final output...",
+];
+
+interface DemoResult {
+  subject: string;
+  content: string;
+  enrichment: {
+    recipientName: string;
+    recipientCompany: string;
+    buyingStage: string;
+    intent: string;
+    persona: string;
+    keyPainPoints: string[];
+  };
+}
 
 export default function BridgeDraftDemo() {
   const [input, setInput] = useState("");
-  const [output, setOutput] = useState("");
+  const [result, setResult] = useState<DemoResult | null>(null);
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [loadingStep, setLoadingStep] = useState(0);
+  const stepInterval = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Cycle through loading steps while generating
+  useEffect(() => {
+    if (isLoading) {
+      setLoadingStep(0);
+      stepInterval.current = setInterval(() => {
+        setLoadingStep((prev) => Math.min(prev + 1, LOADING_STEPS.length - 1));
+      }, 3000);
+    } else {
+      if (stepInterval.current) clearInterval(stepInterval.current);
+      setLoadingStep(0);
+    }
+    return () => {
+      if (stepInterval.current) clearInterval(stepInterval.current);
+    };
+  }, [isLoading]);
 
   const handleGenerate = async () => {
     if (!input.trim()) return;
     setIsLoading(true);
+    setError("");
+    setResult(null);
+
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-      const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: `You are Cognenta's AI Bridge Draft Engine. 
-        Your task is to take messy SDR call notes and transform them into a "Technically Grounded Bridge Draft" for an Account Executive (AE) to send.
-        
-        Rules:
-        1. Use "Thick Data" (specific technical context, bottlenecks, timelines).
-        2. No generic templates.
-        3. Professional, peer-to-peer tone.
-        4. Reference the SDR by name [SDR] if appropriate.
-        5. Focus on the prospect's pain.
-        
-        SDR NOTES:
-        ${input}
-        
-        GENERATE BRIDGE DRAFT:`,
+      const response = await fetch(`${DEMO_API_URL}/demo/generate-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-demo-key": DEMO_API_KEY,
+        },
+        body: JSON.stringify({ notes: input }),
       });
-      setOutput(response.text || "Failed to generate draft.");
-    } catch (error) {
-      console.error(error);
-      setOutput("We need a little more context to build a grounded draft. Try adding the prospect's stack, main bottleneck, and timeline.");
+
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}));
+        if (response.status === 429) {
+          throw new Error("Rate limit reached. Please try again in a few minutes.");
+        }
+        throw new Error(err.message || `Request failed (${response.status})`);
+      }
+
+      const data: DemoResult = await response.json();
+      setResult(data);
+    } catch (err: any) {
+      console.error("[Demo] Generation failed:", err);
+      setError(err.message || "Something went wrong. Please try again.");
     } finally {
       setIsLoading(false);
     }
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(output);
+    if (!result) return;
+    const fullText = `Subject: ${result.subject}\n\n${result.content}`;
+    navigator.clipboard.writeText(fullText);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -66,6 +113,7 @@ export default function BridgeDraftDemo() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="e.g. Stack: AWS, Kubernetes. Pain: Manual deployments taking 4 hours. Goal: Automate by end of month."
               className="grow bg-obsidian/50 border border-white/10 rounded-2xl p-6 text-white placeholder:text-medium-grey/30 focus:outline-none focus:border-cyber-mint/50 transition-colors duration-200 resize-none min-h-[140px]"
+              maxLength={2000}
               aria-label="Enter your SDR call notes"
             />
             <button
@@ -83,7 +131,7 @@ export default function BridgeDraftDemo() {
           <div className="glass p-6 sm:p-8 rounded-3xl border-cyber-mint/20 relative flex flex-col">
             <div className="flex justify-between items-center mb-4">
               <label className="text-xs font-bold uppercase tracking-widest text-cyber-mint">Cognenta Output (AE Draft)</label>
-              {output && (
+              {result && (
                 <button
                   onClick={copyToClipboard}
                   className="text-medium-grey hover:text-white transition-colors duration-200 cursor-pointer p-2 rounded-lg"
@@ -103,18 +151,57 @@ export default function BridgeDraftDemo() {
                     exit={{ opacity: 0 }}
                     className="absolute inset-0 flex items-center justify-center"
                   >
-                    <div className="flex flex-col items-center gap-4">
+                    <div className="flex flex-col items-center gap-5 w-full max-w-xs">
                       <div className="w-12 h-12 border-4 border-cyber-mint/20 border-t-cyber-mint rounded-full animate-spin" aria-hidden="true" />
-                      <p className="text-sm text-cyber-mint animate-pulse font-mono" role="status">Extracting situational context...</p>
+                      <AnimatePresence mode="wait">
+                        <motion.p
+                          key={loadingStep}
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -8 }}
+                          transition={{ duration: 0.3 }}
+                          className="text-sm text-cyber-mint font-mono text-center"
+                          role="status"
+                        >
+                          {LOADING_STEPS[loadingStep]}
+                        </motion.p>
+                      </AnimatePresence>
+                      {/* Progress dots */}
+                      <div className="flex gap-2">
+                        {LOADING_STEPS.map((_, i) => (
+                          <div
+                            key={i}
+                            className={`w-2 h-2 rounded-full transition-all duration-500 ${
+                              i <= loadingStep ? "bg-cyber-mint scale-100" : "bg-white/10 scale-75"
+                            }`}
+                          />
+                        ))}
+                      </div>
                     </div>
                   </motion.div>
-                ) : output ? (
+                ) : error ? (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-white leading-relaxed whitespace-pre-wrap"
+                    className="text-red-400 leading-relaxed"
                   >
-                    {output}
+                    {error}
+                  </motion.div>
+                ) : result ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-white leading-relaxed"
+                  >
+                    {/* Subject Line */}
+                    <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
+                      <Mail size={14} className="text-cyber-mint shrink-0" aria-hidden="true" />
+                      <span className="text-xs uppercase tracking-widest text-medium-grey">Subject:</span>
+                      <span className="text-cyber-mint font-semibold">{result.subject}</span>
+                    </div>
+
+                    {/* Email Body */}
+                    <div className="whitespace-pre-wrap">{result.content}</div>
                   </motion.div>
                 ) : (
                   <div className="h-full flex items-center justify-center text-medium-grey/20 italic">
