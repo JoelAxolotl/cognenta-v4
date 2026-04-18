@@ -15,8 +15,8 @@ export default function RevenueAudit() {
   return (
     <div className="pt-32 pb-24">
       <SEO 
-        title="Calculate Your Pipeline Leak — Free 15-Minute Revenue Audit | Cognenta" 
-        description="Find out exactly how much pipeline you're losing to slow, generic SDR-to-AE follow-ups. Book a 15-minute audit and get a live ROI projection for your deal size."
+        title="FREE 360° Pipeline Leak Scan — Book a Call + Recover 3 Dead Deals Live | Cognenta" 
+        description="Bring us the raw CRM notes from your 3 ghosted deals. We rewrite them live on the call. Keep the follow-ups even if you don't hire us."
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
@@ -25,9 +25,9 @@ export default function RevenueAudit() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">Stop Estimating. Start Calculating.</h1>
+            <h1 className="text-4xl sm:text-5xl font-bold mb-6">Watch Us Rewrite Your 3 Deadest Deals Live.</h1>
             <p className="text-lg sm:text-xl text-medium-grey leading-relaxed">
-              Most Founder-led sales teams know their handoff is broken. Very few know exactly how much pipeline they're losing to it every 30 days — or what a fixed version looks like in practice.
+              We only work with teams where this will have a massive, measurable impact. Bring us the raw CRM notes from your last 3 ghosted deals — zero prep work required. You'll watch the gap in real-time as we rewrite them on the call.
             </p>
           </motion.div>
         </div>
@@ -43,7 +43,7 @@ export default function RevenueAudit() {
             <div className="space-y-10">
               <div>
                 <div className="flex justify-between mb-4">
-                  <label htmlFor="meetings-slider" className="text-sm font-bold uppercase tracking-wider text-medium-grey">Monthly SDR Meetings</label>
+                  <label htmlFor="meetings-slider" className="text-sm font-bold uppercase tracking-wider text-medium-grey">Monthly Setter Meetings</label>
                   <span className="text-cyber-mint font-mono font-bold" aria-live="polite">{meetings}</span>
                 </div>
                 <input 
@@ -77,7 +77,7 @@ export default function RevenueAudit() {
 
               <div>
                 <div className="flex justify-between mb-4">
-                  <label htmlFor="ghost-slider" className="text-sm font-bold uppercase tracking-wider text-medium-grey">Demo Ghost Rate (%)</label>
+                  <label htmlFor="ghost-slider" className="text-sm font-bold uppercase tracking-wider text-medium-grey">Actual Ghost Rate (%)</label>
                   <span className="text-cyber-mint font-mono font-bold" aria-live="polite">{ghostRate}%</span>
                 </div>
                 <input 
@@ -96,10 +96,11 @@ export default function RevenueAudit() {
             <div className="mt-16 p-8 bg-cyber-mint/5 border border-cyber-mint/20 rounded-2xl">
               <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div>
-                  <p className="text-sm font-bold uppercase tracking-wider text-medium-grey mb-1">Monthly Revenue Leak</p>
+                  <p className="text-sm font-bold uppercase tracking-wider text-medium-grey mb-1">You are bleeding roughly</p>
                   <h3 className="text-4xl sm:text-5xl font-bold text-cyber-mint font-mono tracking-tighter" aria-live="polite">
                     ${monthlyLeak.toLocaleString()}
                   </h3>
+                  <p className="text-medium-grey mt-1 text-sm">in pipeline into the dead zone every month.</p>
                 </div>
               <div className="w-full md:w-auto flex flex-col gap-3">
                   <Link
@@ -110,12 +111,12 @@ export default function RevenueAudit() {
                       document.getElementById('audit-form')?.scrollIntoView({ behavior: 'smooth' });
                     }}
                   >
-                    Book My Free Revenue Audit
+                    Book a Call + Recover 3 Dead Deals Live
                   </Link>
                 </div>
               </div>
               <p className="mt-4 text-[10px] text-medium-grey/50 text-center md:text-left">
-                We'll send you a custom ROI projection based on your deal size and volume.
+                We'll rewrite your 3 deadest deals live on the call. Keep the follow-ups either way.
               </p>
             </div>
           </div>
@@ -125,40 +126,36 @@ export default function RevenueAudit() {
             <div className="glass p-8 rounded-2xl">
               <h4 className="text-lg font-bold mb-4 flex items-center gap-2">
                 <TrendingDown size={20} className="text-cyber-mint" aria-hidden="true" />
-                The Real Cost
+                What You'll Walk Away With
               </h4>
-              <p className="text-sm text-medium-grey leading-relaxed">
-                Every hour a high-intent prospect sits without a contextual, technical response after the SDR call, your demo show rate drops. Enter your numbers below to see your monthly pipeline leak.
-              </p>
+              <ul className="space-y-3 text-sm text-medium-grey">
+                <li className="flex gap-3">
+                  <span className="text-cyber-mint font-bold shrink-0">01.</span>
+                  <span>3 rewritten follow-ups you can send immediately to wake those deals back up.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-cyber-mint font-bold shrink-0">02.</span>
+                  <span>Your exact pipeline leak estimate — what you're bleeding per month.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-cyber-mint font-bold shrink-0">03.</span>
+                  <span>See how our software plugs the leaks in your current motion.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-cyber-mint font-bold shrink-0">04.</span>
+                  <span>Keep the report — even if you don't hire us.</span>
+                </li>
+              </ul>
             </div>
 
             <div className="glass p-8 rounded-2xl">
               <h4 className="text-lg font-bold mb-4 flex items-center gap-2">
                 <Clock size={20} className="text-cyber-mint" aria-hidden="true" />
-                What Happens in 15 Minutes
+                What Happens on the Call
               </h4>
-              <ul className="space-y-4 text-sm text-medium-grey">
-                <li className="flex gap-3">
-                  <span className="text-cyber-mint font-bold" aria-hidden="true">01.</span>
-                  <span><strong>Your Dead Zone Dollar Report</strong> — a clear calculation of the pipeline you're leaving on the table every month.</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-cyber-mint font-bold" aria-hidden="true">02.</span>
-                  <span><strong>3 Live Bridge Draft Examples</strong> — bring us raw CRM notes from your three most recent ghosted or slow deals. We'll build the drafts live.</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-cyber-mint font-bold" aria-hidden="true">03.</span>
-                  <span><strong>Your Custom ROI Projection</strong> — we'll map out exactly what your $200/meeting investment returns.</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-cyber-mint font-bold" aria-hidden="true">04.</span>
-                  <span><strong>Attribution Walkthrough</strong> — we'll also walk you through exactly how attribution works — you never pay for meetings we did not touch.</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-cyber-mint font-bold" aria-hidden="true">05.</span>
-                  <span><strong>CRM Compatibility Check</strong> — We'll review your current routing. Even if you aren't on HubSpot or Salesforce, we can integrate into almost all CRMs and build the custom connection in most cases within 48 hours without disrupting your team.</span>
-                </li>
-              </ul>
+              <p className="text-sm text-medium-grey leading-relaxed">
+                Bring us the raw CRM notes from your last 3 ghosted deals. Zero prep work required. You'll watch the gap in real-time as we rewrite them live on the call — even if we never work together.
+              </p>
             </div>
           </div>
         </div>

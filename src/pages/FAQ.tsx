@@ -5,45 +5,49 @@ import SEO from "../components/SEO";
 
 const faqs = [
   {
-    category: "Pricing & Results",
+    category: "Workflow & Routing",
     questions: [
       {
-        q: "What does it cost?",
-        a: "Setup fee: $350 (covers building your custom Handoff Workflow, Intake Form, and CRM sync). Performance fee: $200 per meeting that shows. No monthly retainer. No flat subscription. We only charge when a prospect actually shows up to the demo.\n\nWe also include a Triage Checkbox on the SDR intake form. If the SDR just booked a straightforward deal — standard stack, clear timeline, no unusual complexity — they leave it blank. That handoff still gets CRM hygiene and a clean calendar invite, but you pay nothing.\n\nIf the SDR books a complex deal — unfamiliar tech stack, multi-stakeholder buying committee, or the prospect raised specific objections — they check the box. You only pay the $200 performance fee for meetings where the box was checked and the prospect actually showed up."
+        q: "How does the workflow routing work?",
+        a: "We build a custom Triage Checkbox directly into your CRM. If the team logs a straightforward deal, they leave it blank. If they log a complex deal, they check the box. We only fire when you need us to."
+      },
+      {
+        q: "What if the draft doesn't sound exactly right?",
+        a: "Our voice profiling gets the tone 98% perfect out of the gate. Because it lives in the draft folder, your AE retains absolute authority. If a highly complex deal requires a specific nuance, they can add that final 2% human touch in seconds before hitting send."
       },
       {
         q: "How quickly will we see results?",
-        a: "The most immediate impact comes from simply closing the response gap and raising the technical quality of the handoff — both of which take effect from day one."
+        a: "You will start seeing contextual drafts in your team's queue within 48 hours of onboarding your post-call revenue recovery infrastructure."
       }
     ]
   },
   {
-    category: "Operations & Deliverability",
+    category: "Operations & Voice Profiling",
     questions: [
       {
-        q: "What does implementation actually look like?",
-        a: "In most cases, we're fully integrated within 48 hours for standard CRM instances. We build your custom SDR Intake Form, map the HubSpot or Salesforce routing, and configure the enrichment triggers. Your AEs start seeing customized drafts in their queue within two business days."
+        q: "How do you actually build my AE's voice profile?",
+        a: "We ask for 3 to 5 of your AE's most successful past follow-ups. Our system analyzes their sentence length, greeting style, and vocabulary to build their custom profile."
       },
+      {
+        q: "What happens when we hire new AEs?",
+        a: "You simply drop their writing samples into your onboarding folder, and their unique voice profile is live and generating drafts in minutes."
+      }
+    ]
+  },
+  {
+    category: "Security & Deliverability",
+    questions: [
       {
         q: "Will this hurt our domain reputation?",
-        a: "No. Spam filters are built to catch volume and pattern-matching. Every Cognenta draft is a unique, 1-to-1 email sent from your AE's actual outbox after human review. It reads like high-effort manual outreach because, structurally, it is."
+        a: "No. Spam filters are built to catch volume and pattern-matching. Every Cognenta draft is a unique, 1-to-1 email sent manually from your actual outbox like your SDR or AE normally would."
       },
       {
-        q: "Do you support CRMs other than HubSpot and Salesforce?",
-        a: "Yes. For our high-ticket agency clients, we also support GoHighLevel and custom webhook routing. If your team runs on a different CRM, reach out — we'll scope the integration during your Revenue Audit call."
-      }
-    ]
-  },
-  {
-    category: "Security & Privacy",
-    questions: [
+        q: "Is there a human reading our prospect notes?",
+        a: "No. Cognenta is a 100% automated system. Your data passes securely via API from your CRM straight into your AE's drafts folder. Meaning only you have access to the data."
+      },
       {
         q: "How do we know our data is safe?",
-        a: "Cognenta is a managed routing and drafting protocol, not a data warehouse. We practice data minimization by design. Once a draft is staged in your review queue, we apply a zero-retention policy to the prospect's raw call notes and PII.\n\nWe only retain the anonymized CRM Deal ID so our system can track whether the meeting was held for billing purposes. We do not hold conversational data we do not need."
-      },
-      {
-        q: "Why API keys instead of a native app?",
-        a: "Native apps often require broad permissions. Connecting via specific API connections means you maintain granular control over exactly what our team can access — and you can revoke it instantly without involving IT."
+        a: "We practice strict data minimization. Most importantly, we do not use your proprietary CRM data or prospect notes to train our AI models."
       }
     ]
   }
@@ -60,7 +64,7 @@ export default function FAQ() {
     <div className="pt-32 pb-24">
       <SEO
         title="Frequently Asked Questions | Cognenta"
-        description="Everything you need to know about Cognenta's pricing, implementation, and security for your SDR-to-AE handoff."
+        description="Everything you need to know about Cognenta's post-call revenue recovery — pricing, workflow routing, voice profiling, and data security."
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -115,12 +119,12 @@ export default function FAQ() {
 
         <div className="mt-24 glass p-12 rounded-3xl text-center">
           <h2 className="text-2xl font-bold mb-4">Still have questions?</h2>
-          <p className="text-medium-grey mb-8">We're here to help you recover your pipeline.</p>
+          <p className="text-medium-grey mb-8">The fastest way to get answers is live on the call — we'll rewrite 3 of your deadest deals and you'll see exactly how it works.</p>
           <a
             href="/revenue-audit"
             className="bg-cyber-mint text-obsidian px-8 py-4 rounded-full font-bold text-lg mint-glow-hover transition-all duration-200 cursor-pointer inline-block"
           >
-            Book Your Free Revenue Audit
+            Book a Call + Recover 3 Dead Deals Live
           </a>
         </div>
       </div>
